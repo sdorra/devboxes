@@ -1,0 +1,13 @@
+- name: Create gpg configuration directory
+  file:
+    path: ~/.gpg
+    state: directory
+
+- name: Link gpg configuration
+  file:
+    src: "{{ playbook_dir }}/config/{{ item }}"
+    dest: ~/.gpg/{{ item }}
+    state: link
+  with_items:
+  - gpg.conf
+  - gpg-agent.conf

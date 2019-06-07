@@ -3,6 +3,7 @@
     name:
     - zsh
     - git
+    - gnupg
     - python3
     - python-pip
     state: present
@@ -19,6 +20,7 @@
 - name: Find path of zsh
   shell: which zsh
   register: whichzsh
+  changed_when: False
 
 - name: Change default shell to zsh
   become: yes

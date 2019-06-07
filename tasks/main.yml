@@ -16,6 +16,13 @@
   - vim
   include: vim.yml
 
+- name: Install and configure gpg environment
+  tags:
+  - shell
+  - gpg
+  - gnupg
+  include: gpg.yml
+
 - name: Install and configure snap
   become: yes
   include: snap.yml
