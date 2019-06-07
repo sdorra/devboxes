@@ -149,3 +149,6 @@ if [ -S $(gpgconf --list-dirs agent-ssh-socket) ]; then
 else
   echo "$(gpgconf --list-dirs agent-ssh-socket) doesn't exist. Is gpg-agent running ?"
 fi
+
+# read fzf configuration, if available
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

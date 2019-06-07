@@ -6,6 +6,7 @@
     - gnupg
     - python3
     - python-pip
+    - fzf
     state: present
   when: ansible_distribution == "Archlinux"
 
