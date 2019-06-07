@@ -101,6 +101,7 @@ plugins=(
 
   # utils
   wd
+  editorconfig
 )
 
 source $ZSH/oh-my-zsh.sh
