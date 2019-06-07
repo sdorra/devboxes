@@ -11,3 +11,4 @@
   with_items:
   - gpg.conf
   - gpg-agent.conf
+  - gpgrc
