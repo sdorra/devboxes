@@ -2,12 +2,9 @@
   pacman:
     name:
     - zsh
-    - git
-    - gnupg
     - python3
     - python-pip
     - fzf
-    state: present
   when: ansible_distribution == "Archlinux"
 
 - name: Link zsh configuration
@@ -40,6 +37,14 @@
     repo: https://github.com/bhilburn/powerlevel9k
     dest: ~/.oh-my-zsh/custom/themes/powerlevel9k
     update: no
+
+- name: Install custom oh-my-zsh plugins
+  file:
+    src: "{{ playbook_dir }}/config/oh-my-zsh-plugins/{{item}}.plugin.zsh"
+    dest: "~/.oh-my-zsh/custom/plugins/{{ item }}/{{item}}.plugin.zsh"
+    state: link
+  with_items:
+  - editorconfig
 
 - name: Install pywal
   become: yes

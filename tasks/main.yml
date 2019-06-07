@@ -1,3 +1,11 @@
+- name: Install and configure git
+  tags:
+  - shell
+  - git
+  - scm
+  - vcs
+  include: git.yaml
+
 - name: Install and configure zsh environment
   tags:
   - zsh

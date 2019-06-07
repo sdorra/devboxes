@@ -1,9 +1,6 @@
 - name: Install tmux and required dependencies
   pacman:
-    name:
-    - tmux
-    - git
-    state: present
+    name: tmux
   when: ansible_distribution == "Archlinux"
 
 - name: Install tmux plugin manager

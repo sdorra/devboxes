@@ -1,0 +1,10 @@
+- name: Install git
+  pacman:
+    name: git
+  when: ansible_distribution == "Archlinux"
+
+- name: Link git configuration
+  file:
+    src: "{{ playbook_dir }}/config/gitconfig"
+    dest: ~/.gitconfig
+    state: link

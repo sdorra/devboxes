@@ -1,8 +1,6 @@
 - name: Install tmux and required dependencies
   pacman:
-    name:
-    - vim
-    - git
+    name: vim
     state: present
   when: ansible_distribution == "Archlinux"
 

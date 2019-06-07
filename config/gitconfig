@@ -1,0 +1,10 @@
+[user]
+	email = s.sdorra@gmail.com
+	name = Sebastian Sdorra
+	signingkey = 0x13B13D4C8A9350A1
+[alias]
+	outgoing = log --pretty=oneline --abbrev-commit --graph @{u}..
+	incoming = !git fetch && git log --pretty=oneline --abbrev-commit --graph ..@{u}
+	ignore = "!gi() { curl -L -s https://www.gitignore.io/api/$@ ;}; gi"
+[credential]
+	helper = cache
