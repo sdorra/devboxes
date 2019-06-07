@@ -1,4 +1,4 @@
-- name: Install zsh and required dependencies
+- name: Install zsh and required dependencies (Arch)
   become: yes
   pacman:
     name:
@@ -8,6 +8,31 @@
     - fzf
     - bat
   when: ansible_distribution == "Archlinux"
+
+- name: Install zsh and required dependencies (Ubuntu)
+  become: yes
+  apt:
+    name:
+    - zsh
+    - python3
+    - python3-pip
+    - bat
+  when: ansible_distribution == "Ubuntu"
+
+- name: Clone fzf repository (Ubuntu)
+  git:
+    repo: https://github.com/junegunn/fzf
+    dest: ~/.fzf
+    update: no
+  when: ansible_distribution == "Ubuntu"
+
+- name: Install fzf (Ubuntu)
+  shell: ~/.fzf/install
+  args:
+    creates: ~/.fzf.zsh
+  when: ansible_distribution == "Ubuntu"
+
+# TODO install fzf on ubuntu
 
 - name: Link zsh configuration
   file:
@@ -39,6 +64,13 @@
     repo: https://github.com/bhilburn/powerlevel9k
     dest: ~/.oh-my-zsh/custom/themes/powerlevel9k
     update: no
+
+- name: create custom oh-my-zsh plugin directories
+  file:
+    path: "~/.oh-my-zsh/custom/plugins/{{ item }}"
+    state: directory
+  with_items:
+  - editorconfig
 
 - name: Install custom oh-my-zsh plugins
   file:

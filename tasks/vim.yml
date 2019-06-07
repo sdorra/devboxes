@@ -1,8 +1,12 @@
-- name: Install tmux and required dependencies
+- name: Install tmux and required dependencies (Arch)
   pacman:
     name: vim
-    state: present
   when: ansible_distribution == "Archlinux"
+
+- name: Install tmux and required dependencies (Ubuntu)
+  apt:
+    name: vim
+  when: ansible_distribution == "Ubuntu"
 
 - name: install vim runtime
   git:

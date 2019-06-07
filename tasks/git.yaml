@@ -1,7 +1,12 @@
-- name: Install git
+- name: Install git (Arch)
   pacman:
     name: git
   when: ansible_distribution == "Archlinux"
+
+- name: Install git (Ubuntu)
+  apt:
+    name: git
+  when: ansible_distribution == "Ubuntu"
 
 - name: Link git configuration
   file:

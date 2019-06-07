@@ -22,9 +22,18 @@
     dest: ~/.gorc
     state: link
 
-- name: Install required go tools
+- name: Install required go tools (Arch)
   become: yes
   pacman:
     name:
     - dep
     - glide
+  when: ansible_distribution == "Archlinux"
+
+- name: Install required go tools (Ubuntu)
+  become: yes
+  apt:
+    name:
+    - go-dep
+    - golang-glide
+  when: ansible_distribution == "Ubuntu"

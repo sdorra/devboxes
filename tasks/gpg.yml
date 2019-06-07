@@ -1,7 +1,12 @@
-- name: Install gpg
+- name: Install gpg (Arch)
   pacman:
     name: gnupg
   when: ansible_distribution == "Archlinux"
+
+- name: Install gpg (Ubuntu)
+  apt:
+    name: gnupg
+  when: ansible_distribution == "Ubuntu"
 
 - name: Create gpg configuration directory
   file:
