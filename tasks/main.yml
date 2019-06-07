@@ -1,0 +1,29 @@
+- name: Install and configure zsh environment
+  tags:
+  - zsh
+  - shell
+  include: zsh.yml
+
+- name: Install and configure tmux environment
+  tags:
+  - shell
+  - tmux
+  include: tmux.yml
+
+- name: Install and configure vim environment
+  tags:
+  - shell
+  - vim
+  include: vim.yml
+
+- name: Install and configure snap
+  become: yes
+  include: snap.yml
+  tags:
+  - snap
+  when: ansible_distribution == "Archlinux"
+
+- name: Install vscode and extensions
+  tags:
+  - vscode
+  include: vscode.yml

@@ -1,0 +1,45 @@
+- name: Install zsh and required dependencies
+  pacman:
+    name:
+    - zsh
+    - git
+    - python3
+    - python-pip
+    state: present
+  when: ansible_distribution == "Archlinux"
+
+- name: Link zsh configuration
+  file:
+    src: "{{ playbook_dir }}/config/{{ item }}"
+    dest: ~/.{{ item }}
+    state: link
+  with_items:
+  - zshrc
+
+- name: Find path of zsh
+  shell: which zsh
+  register: whichzsh
+
+- name: Change default shell to zsh
+  become: yes
+  user:
+    name: "{{ lookup('env','USER') }}"
+    shell: "{{ whichzsh.stdout }}"
+
+- name: Install oh-my-zsh
+  git:
+    repo: https://github.com/robbyrussell/oh-my-zsh
+    dest: ~/.oh-my-zsh
+    update: no
+
+- name: Install powerlevel9k theme
+  git:
+    repo: https://github.com/bhilburn/powerlevel9k
+    dest: ~/.oh-my-zsh/custom/themes/powerlevel9k
+    update: no
+
+- name: Install pywal
+  become: yes
+  pip:
+    name: pywal
+    executable: pip3

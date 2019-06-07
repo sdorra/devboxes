@@ -1,0 +1,14 @@
+- name: Install packages
+  pacman:
+    name: snapd
+
+- name: Start snapd
+  systemd:
+    name: snapd.socket
+    state: started
+
+- name: Enable support for classic snaps
+  file:
+    dest: /snap
+    src: /var/lib/snapd/snap
+    state: link

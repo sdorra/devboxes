@@ -1,0 +1,10 @@
+- name: Install vscode
+  become: yes
+  snap:
+    name: code
+    classic: yes
+    state: present
+  when: ansible_system == "Linux"
+
+# todo install vscode on mac
+# todo install plugins
