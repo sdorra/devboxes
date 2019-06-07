@@ -132,6 +132,9 @@ export EDITOR='vim'
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias igit="git -c http.sslVerify=false"
+alias dev_mode="export POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(context dir vcs kubecontext)"
+alias kube_mode="export POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(context dir kubecontext)"
+alias ops_mode=kube_mode
 
 # pywal
 # https://github.com/dylanaraps/pywal/wiki/Getting-Started#making-the-colorscheme-persist-on-reboot
