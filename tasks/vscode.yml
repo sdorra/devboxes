@@ -6,5 +6,25 @@
     state: present
   when: ansible_system == "Linux"
 
+- name: install vscode extensions
+  command: "code --install-extension '{{ item }}'"
+  with_items:
+  - ms-kubernetes-tools.vscode-kubernetes-tools
+  - peterjausovec.vscode-docker
+  - EditorConfig.EditorConfig
+  - dbaeumer.vscode-eslint
+  - esbenp.prettier-vscode
+  - flowtype.flow-for-vscode
+  - vscoss.vscode-ansible
+  - k--kato.intellij-idea-keybindings
+  - mauve.terraform
+  - marcostazi.vs-code-vagrantfile
+  - redhat.vscode-yaml
+  - jebbs.plantuml
+  - mrcrowl.hg
+  - msjsdiag.debugger-for-chrome
+  - ms-vsliveshare.vsliveshare
+  register: vscode_result
+  changed_when: "'already installed' not in vscode_result.stdout"
+
 # todo install vscode on mac
-# todo install plugins
