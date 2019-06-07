@@ -5,6 +5,7 @@
 - name: Start snapd
   systemd:
     name: snapd.socket
+    enabled: yes
     state: started
 
 - name: Enable support for classic snaps
