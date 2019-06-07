@@ -30,6 +30,13 @@
   - snap
   when: ansible_distribution == "Archlinux"
 
+- name: Install and configure golang
+  include: golang.yml
+  tags:
+  - dev
+  - go
+  - golang
+
 - name: Install vscode and extensions
   tags:
   - vscode

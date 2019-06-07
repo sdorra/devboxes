@@ -146,3 +146,6 @@ source ~/.cache/wal/colors-tty.sh
 
 # read fzf configuration, if available
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+# configure go dev environment
+[ -f ~/.gorc ] && source ~/.gorc

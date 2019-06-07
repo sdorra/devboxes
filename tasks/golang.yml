@@ -1,0 +1,30 @@
+- name: Install go 1.12
+  become: yes
+  snap:
+    classic: yes
+    channel: 1.12/stable
+    name: go
+
+- name: Create go path related directories
+  file:
+    path: "{{ item }}"
+    state: directory
+  with_items:
+  - ~/Projects
+  - ~/Projects/go
+  - ~/Projects/go/bin
+  - ~/Projects/go/pkg
+  - ~/Projects/go/src
+
+- name: Link git configuration
+  file:
+    src: "{{ playbook_dir }}/config/gorc"
+    dest: ~/.gorc
+    state: link
+
+- name: Install required go tools
+  become: yes
+  pacman:
+    name:
+    - dep
+    - glide
