@@ -5,6 +5,11 @@ export TERM="xterm-256color"
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 export PATH="/snap/bin:${PATH}"
 
+# add gcloud and kubectl to path
+if [ -f '/usr/local/google-cloud-sdk/path.zsh.inc' ]; then 
+  source '/usr/local/google-cloud-sdk/path.zsh.inc'
+fi
+
 # Path to your oh-my-zsh installation.
 export ZSH="/home/$USER/.oh-my-zsh"
 
