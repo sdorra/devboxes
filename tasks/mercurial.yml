@@ -1,0 +1,15 @@
+- name: Install mercurial (Arch)
+  pacman:
+    name: mercurial
+  when: ansible_distribution == "Archlinux"
+
+- name: Install mercurial (Ubuntu)
+  apt:
+    name: mercurial
+  when: ansible_distribution == "Ubuntu"
+
+- name: Link git configuration
+  file:
+    src: "{{ playbook_dir }}/config/hgrc"
+    dest: ~/.hgrc
+    state: link

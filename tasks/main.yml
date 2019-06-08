@@ -31,6 +31,13 @@
   - gnupg
   include: gpg.yml
 
+- name: Install and configure mercurial environment
+  tags:
+  - shell
+  - mercurial
+  - hg
+  include: mercurial.yml
+
 - name: Install and configure snap
   become: yes
   include: snap.yml
