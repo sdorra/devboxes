@@ -145,8 +145,8 @@ alias yaml="bat --language='yaml'"
 
 # pywal
 # https://github.com/dylanaraps/pywal/wiki/Getting-Started#making-the-colorscheme-persist-on-reboot
-(cat ~/.cache/wal/sequences &)
-source ~/.cache/wal/colors-tty.sh
+[ -f ~/.cache/wal/sequences ] && (cat ~/.cache/wal/sequences &)
+[ -f ~/.cache/wal/colors-tty.sh ] && source ~/.cache/wal/colors-tty.sh
 
 # enable gpg ssh agent
 [ -f ~/.gpg/gpgrc ] && source ~/.gpg/gpgrc
