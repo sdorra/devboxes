@@ -19,6 +19,11 @@
     dest: ~/.gpg/{{ item }}
     state: link
   with_items:
-  - gpg.conf
   - gpg-agent.conf
   - gpgrc
+
+- name: Render gpg.conf
+  template: 
+    src: "{{ playbook_dir }}/config/gpg.conf.j2"
+    dest: ~/.gpg/gpg.conf
+    mode: 0600

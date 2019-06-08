@@ -1,3 +1,41 @@
 - hosts: local
   roles:
-  - role: '{{playbook_dir}}'
+  - role: git
+    tags:
+    - shell
+    - git
+    - scm
+    - vcs
+  - role: zsh
+    tags:
+    - zsh
+    - shell
+  - role: tmux
+    tags:
+    - shell
+    - tmux
+  - role: vim
+    tags:
+    - shell
+    - vim
+  - role: gpg
+    tags:
+    - shell
+    - gpg
+    - gnupg
+  - role: mercurial
+    tags:
+    - shell
+    - mercurial
+    - hg
+  - role: snap
+    tags:
+    - snap
+  - role: golang
+    tags:
+    - dev
+    - go
+    - golang
+  - role: vscode
+    tags:
+    - vscode

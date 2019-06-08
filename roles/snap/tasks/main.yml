@@ -1,15 +1,20 @@
-- name: Install packages
+- name: Install snapd package
+  become: yes
   pacman:
     name: snapd
+  when: ansible_distribution == "Archlinux"
 
 - name: Start snapd
+  become: yes
   systemd:
     name: snapd.socket
     enabled: yes
     state: started
 
 - name: Enable support for classic snaps
+  become: yes
   file:
     dest: /snap
     src: /var/lib/snapd/snap
     state: link
+  when: ansible_distribution == "Archlinux"

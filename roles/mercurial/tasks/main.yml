@@ -8,8 +8,8 @@
     name: mercurial
   when: ansible_distribution == "Ubuntu"
 
-- name: Link git configuration
-  file:
-    src: "{{ playbook_dir }}/config/hgrc"
+- name: Render mercurial configuration
+  template:
+    src: "{{ playbook_dir }}/config/hgrc.j2"
     dest: ~/.hgrc
-    state: link
+    mode: 0600

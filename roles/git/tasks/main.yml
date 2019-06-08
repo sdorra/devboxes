@@ -8,8 +8,8 @@
     name: git
   when: ansible_distribution == "Ubuntu"
 
-- name: Link git configuration
-  file:
-    src: "{{ playbook_dir }}/config/gitconfig"
+- name: Render git configuration
+  template:
+    src: "{{ playbook_dir }}/config/gitconfig.j2"
     dest: ~/.gitconfig
-    state: link
+    mode: 0600
