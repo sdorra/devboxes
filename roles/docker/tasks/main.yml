@@ -4,28 +4,8 @@
     name: docker
   when: ansible_distribution == "Archlinux"
 
-- name: Install docker gpg key (Ubuntu)
-  become: yes
-  apt_key:
-    url: https://download.docker.com/linux/ubuntu/gpg
-  when: ansible_distribution == "Ubuntu"
-
-- name: Capture lsb release (Ubuntu)
-  shell: lsb_release -cs
-  register: lsbrelease
-  changed_when: False
-  when: ansible_distribution == "Ubuntu"
-
-- name: Install docker apt repository (Ubuntu)
-  become: yes
-  apt_repository:
-    repo: deb [arch=amd64] https://download.docker.com/linux/ubuntu {{ lsbrelease.stdout }} stable
-  when: ansible_distribution == "Ubuntu"
-
-- name: Install docker-ce package (Ubuntu)
-  become: yes
-  apt:
-    name: docker-ce
+- name: Install docker (Ubuntu)
+  include: ubuntu.yml
   when: ansible_distribution == "Ubuntu"
 
 - name: Start and enable docker daemon

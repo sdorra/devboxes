@@ -1,0 +1,19 @@
+- name: Install docker gpg key (Ubuntu)
+  become: yes
+  apt_key:
+    url: https://download.docker.com/linux/ubuntu/gpg
+
+- name: Capture lsb release (Ubuntu)
+  shell: lsb_release -cs
+  register: lsbrelease
+  changed_when: False
+
+- name: Install docker apt repository (Ubuntu)
+  become: yes
+  apt_repository:
+    repo: deb [arch=amd64] https://download.docker.com/linux/ubuntu {{ lsbrelease.stdout }} stable
+
+- name: Install docker-ce package (Ubuntu)
+  become: yes
+  apt:
+    name: docker-ce
