@@ -36,6 +36,13 @@
     - dev
     - go
     - golang
+  - role: node
+    tags:
+    - dev
+    - node
+    - nodejs
+    - js
+    - javascript
   - role: vscode
     tags:
     - vscode

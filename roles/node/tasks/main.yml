@@ -1,0 +1,17 @@
+- name: Install node
+  become: yes
+  snap:
+    name: node
+    classic: yes
+    channel: 10/stable
+
+- name: Install global npm packages
+  become: yes
+  npm:
+    name: "{{ item }}"
+    global: yes
+  with_items:
+  - yarn
+  - colortest
+  - prettier
+  - create-react-app
