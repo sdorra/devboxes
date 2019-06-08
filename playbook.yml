@@ -28,6 +28,13 @@
     - shell
     - mercurial
     - hg
+  - role: docker
+    tags:
+    - docker
+    - docker-compose
+    - docker-machine
+    - ops
+    - container
   - role: snap
     tags:
     - snap
