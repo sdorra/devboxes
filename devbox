@@ -34,4 +34,4 @@ ansible-playbook \
   "${BASEDIR}/playbook.yml" \
   --connection local \
   -i localhost, \
-  -K
+  -K $@

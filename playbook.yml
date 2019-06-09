@@ -35,6 +35,16 @@
     - docker-machine
     - ops
     - container
+  - role: packer
+    tags:
+    - ops
+    - tools
+    - packer
+  - role: terraform
+    tags:
+    - ops
+    - tools
+    - terraform
   - role: snap
     tags:
     - snap
