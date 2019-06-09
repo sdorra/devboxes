@@ -109,6 +109,9 @@ plugins=(
   editorconfig
 )
 
+# load java-env plugin if is
+[ -d ~/.oh-my-zsh/custom/plugins/java-env ] && plugins+=(java-env)
+
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
@@ -138,7 +141,7 @@ export EDITOR='vim'
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias igit="git -c http.sslVerify=false"
-alias dev_mode="export POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(context dir vcs kubecontext)"
+alias dev_mode="export POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(context dir vcs)"
 alias kube_mode="export POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(context dir kubecontext)"
 alias ops_mode=kube_mode
 alias yaml="bat --language='yaml'"

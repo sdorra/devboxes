@@ -1,0 +1,28 @@
+- name: Install java and maven (Arch)
+  become: yes
+  pacman:
+    name:
+    - jdk8-openjdk
+    - jdk11-openjdk
+    - maven
+  when: ansible_distribution == "Archlinux"
+
+- name: Install java and maven (Ubuntu)
+  become: yes
+  apt:
+    name:
+    - openjdk-11-jdk
+    - openjdk-8-jdk
+    - maven
+  when: ansible_distribution == "Ubuntu"
+
+- name: Create java-env plugin directory
+  file:
+    path: ~/.oh-my-zsh/custom/plugins/java-env
+    state: directory
+
+- name: Link java-env plugin
+  file:
+    src: "{{ playbook_dir }}/config/oh-my-zsh-plugins/java-env.plugin.zsh"
+    dest: ~/.oh-my-zsh/custom/plugins/java-env/java-env.plugin.zsh
+    state: link
