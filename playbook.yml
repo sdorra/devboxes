@@ -84,4 +84,9 @@
     - gke
   - role: vscode
     tags:
+    - dev
     - vscode
+  - role: idea
+    tags:
+    - dev
+    - idea

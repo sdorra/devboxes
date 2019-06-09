@@ -1,0 +1,5 @@
+- name: Install Intellij Idea Ultimate
+  become: yes
+  snap:
+    classic: yes
+    name: intellij-idea-ultimate
