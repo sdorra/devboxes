@@ -77,6 +77,11 @@
     - nodejs
     - js
     - javascript
+  - role: gcloud
+    tags:
+    - ops
+    - gcloud
+    - gke
   - role: vscode
     tags:
     - vscode

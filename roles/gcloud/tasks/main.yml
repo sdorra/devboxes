@@ -1,0 +1,43 @@
+- name: Install gcloud (Ubuntu)
+  include: ubuntu.yml
+  when: ansible_distribution == "Ubuntu"
+
+- name: Install gcloud (Arch)
+  include: arch.yml
+  when: ansible_distribution == "Archlinux"
+
+- name: Install kubectl
+  become: yes
+  shell: gcloud components install kubectl --quiet
+  args:
+    creates: /usr/local/google-cloud-sdk/bin/kubectl
+
+- name: Clone kubectx repository
+  become: yes
+  git:
+    repo: https://github.com/ahmetb/kubectx
+    dest: /opt/kubectx
+
+- name: Link kubectx scripts
+  become: yes
+  file:
+    src: /opt/kubectx/{{ item }}
+    dest: /usr/local/bin/{{ item }}
+    state: link
+  with_items:
+  - kubectx
+  - kubens
+
+- name: Create completions directory
+  file:
+    path: ~/.oh-my-zsh/completions
+    state: directory
+
+- name: Link kubectx completions
+  file:
+    src: /opt/kubectx/completion/{{ item }}.zsh
+    dest: ~/.oh-my-zsh/completions/_{{ item }}.zsh
+    state: link
+  with_items:
+  - kubectx
+  - kubens
