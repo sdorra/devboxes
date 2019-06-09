@@ -1,0 +1,7 @@
+- name: Install vagrant (Ubuntu)
+  include: ubuntu.yml
+  when: ansible_distribution == "Ubuntu"
+
+- name: Install vagrant (Arch)
+  include: arch.yml
+  when: ansible_distribution == "Archlinux"

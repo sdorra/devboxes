@@ -1,0 +1,9 @@
+- name: Install virtualbox (Ubuntu)
+  include: ubuntu.yml
+  when: ansible_distribution == "Ubuntu"
+
+- name: Install virtualbox (Arch)
+  become: yes
+  pacman:
+    name: virtualbox
+  when: ansible_distribution == "Archlinux"

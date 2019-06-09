@@ -1,9 +1,17 @@
-- name: Install vscode
+- name: Install code
   become: yes
   snap:
     name: code
     classic: yes
     state: present
+  when: ansible_system == "Linux"
+
+- name: Remove deprecated vscode
+  become: yes
+  snap:
+    name: vscode
+    classic: yes
+    state: absent
   when: ansible_system == "Linux"
 
 - name: install vscode extensions

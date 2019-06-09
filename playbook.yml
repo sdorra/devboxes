@@ -45,6 +45,18 @@
     - ops
     - tools
     - terraform
+  - role: virtualbox
+    tags:
+    - ops
+    - tools
+    - virtualbox
+    - vms
+    - vbox
+  - role: vagrant
+    tags:
+    - ops
+    - tools
+    - vagrant
   - role: snap
     tags:
     - snap

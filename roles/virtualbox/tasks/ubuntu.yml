@@ -1,0 +1,22 @@
+- name: Install virtualbox gpg key (Ubuntu)
+  become: yes
+  apt_key:
+    url: "{{ item }}"
+  with_items:
+  - https://www.virtualbox.org/download/oracle_vbox.asc
+  - https://www.virtualbox.org/download/oracle_vbox_2016.asc
+
+- name: Capture lsb release (Ubuntu)
+  shell: lsb_release -cs
+  register: lsbrelease
+  changed_when: False
+
+- name: Install virtualbox apt repository (Ubuntu)
+  become: yes
+  apt_repository:
+    repo: deb https://download.virtualbox.org/virtualbox/debian {{ lsbrelease.stdout }} contrib
+
+- name: Install virtualbox package (Ubuntu)
+  become: yes
+  apt:
+    name: virtualbox-6.0
