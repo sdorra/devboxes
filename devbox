@@ -1,0 +1,37 @@
+#!/bin/bash
+set -euo pipefail
+IFS=$'\n\t'
+
+if ! which ansible-playbook > /dev/null 2>&1; then
+  echo "Could not find ansible. Please install ansible first"
+  exit 1
+fi
+
+BASEDIR=$(dirname "$0")
+
+if [ ! -f "${BASEDIR}/vars.yml" ]; then
+  echo -n "mail: "
+  read MAIL
+
+  echo -n "displayName: "
+  read DISPLAY_NAME
+
+  echo -n "gpg key: "
+  read GPG_KEY
+
+  cat > "${BASEDIR}/vars.yml" <<EOF
+mail: ${MAIL}
+displayName: ${DISPLAY_NAME}
+gpgKey: ${GPG_KEY}
+EOF
+fi
+
+echo "starting ansible ..."
+echo "===================="
+
+ansible-playbook \
+  --extra-vars="@${BASEDIR}/vars.yml" \
+  "${BASEDIR}/playbook.yml" \
+  --connection local \
+  -i localhost, \
+  -K

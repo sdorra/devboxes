@@ -1,4 +1,4 @@
-- hosts: local
+- hosts: all
   roles:
   - role: git
     tags:
