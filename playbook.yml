@@ -28,6 +28,11 @@
     - shell
     - mercurial
     - hg
+  - role: cli-tools
+    tags:
+    - shell
+    - tools
+    - cli-tools
   - role: docker
     tags:
     - docker

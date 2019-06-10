@@ -1,0 +1,42 @@
+- name: Install cli tools from repository (Ubuntu)
+  become: yes
+  apt:
+    name:
+    - htop
+    - iftop
+    - make
+    - openssl
+    - wget
+    - curl
+    - subversion
+    - jq
+  when: ansible_distribution == "Ubuntu"
+
+- name: Install cli tools from repository (Arch)
+  become: yes
+  pacman:
+    name:
+    - htop
+    - iftop
+    - make
+    - openssl
+    - wget
+    - curl
+    - subversion
+    - jq
+  when: ansible_distribution == "Archlinux"
+
+- name: Install bat
+  include: bat.yml
+
+- name: Install gotop
+  include: gotop.yml
+
+- name: Install ctop
+  include: ctop.yml
+
+- name: Install cfssl
+  include: cfssl.yml
+
+- name: Install gopass
+  include: gopass.yml
