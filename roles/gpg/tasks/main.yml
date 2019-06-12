@@ -10,13 +10,13 @@
 
 - name: Create gpg configuration directory
   file:
-    path: ~/.gpg
+    path: ~/.gnupg
     state: directory
 
 - name: Link gpg configuration
   file:
     src: "{{ playbook_dir }}/config/{{ item }}"
-    dest: ~/.gpg/{{ item }}
+    dest: ~/.gnupg/{{ item }}
     state: link
   with_items:
   - gpg-agent.conf
@@ -25,5 +25,5 @@
 - name: Render gpg.conf
   template: 
     src: "{{ playbook_dir }}/config/gpg.conf.j2"
-    dest: ~/.gpg/gpg.conf
+    dest: ~/.gnupg/gpg.conf
     mode: 0600

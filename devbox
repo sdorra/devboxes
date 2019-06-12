@@ -22,7 +22,7 @@ if [ ! -f "${BASEDIR}/vars.yml" ]; then
   cat > "${BASEDIR}/vars.yml" <<EOF
 mail: ${MAIL}
 displayName: ${DISPLAY_NAME}
-gpgKey: ${GPG_KEY}
+gpgKey: "${GPG_KEY}"
 EOF
 fi
 
