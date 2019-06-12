@@ -1,0 +1,26 @@
+- name: Create fonts directory
+  file:
+    path: ~/.fonts
+    state: directory
+
+- name: Install fira nerd-font
+  unarchive:
+    src: https://github.com/ryanoasis/nerd-fonts/releases/download/v2.0.0/FiraCode.zip
+    dest: ~/.fonts
+    remote_src: yes
+    creates: ~/.fonts/Fura Code Medium Nerd Font Complete.ttf
+  register: font
+
+- name: Rebuild font cache
+  shell: fc-cache -f -v
+  when: font.changed
+
+- name: Capture default terminal profile
+  shell: gsettings get org.gnome.Terminal.ProfilesList default | sed "s/'//g"
+  register: profile
+  when: font.changed
+  changed_when: False
+
+- name: Set nerd-font for current terminal profile
+  shell: gsettings set "org.gnome.Terminal.Legacy.Profile:/org/gnome/terminal/legacy/profiles:/:{{ profile.stdout }}/" font "FuraCode Nerd Font Medium 11"
+  when: font.changed

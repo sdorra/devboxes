@@ -32,8 +32,6 @@
     creates: ~/.fzf.zsh
   when: ansible_distribution == "Ubuntu"
 
-# TODO install fzf on ubuntu
-
 - name: Link zsh configuration
   file:
     src: "{{ playbook_dir }}/config/{{ item }}"
@@ -52,6 +50,9 @@
   user:
     name: "{{ lookup('env','USER') }}"
     shell: "{{ whichzsh.stdout }}"
+
+- name: Install terminal font
+  include: font.yml
 
 - name: Install oh-my-zsh
   git:
