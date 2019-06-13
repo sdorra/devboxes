@@ -156,7 +156,7 @@ alias yaml="bat --language='yaml'"
 [ -f ~/.cache/wal/colors-tty.sh ] && source ~/.cache/wal/colors-tty.sh
 
 # enable gpg ssh agent
-[ -f ~/.gpg/gpgrc ] && source ~/.gpg/gpgrc
+[ -f ~/.gnupg/gpgrc ] && source ~/.gnupg/gpgrc
 
 # read fzf configuration, if available
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
