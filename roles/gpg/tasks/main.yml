@@ -12,7 +12,9 @@
 
 - name: Install gpg (MacOSX)
   homebrew:
-    name: gnupg
+    name: 
+    - gnupg
+    - pinentry-mac
   when: ansible_distribution == "MacOSX"
 
 - name: Create gpg configuration directory
