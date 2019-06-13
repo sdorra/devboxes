@@ -39,6 +39,7 @@
     - shell
     - tools
     - cli-tools
+    - mac
   - role: docker
     tags:
     - docker
@@ -51,11 +52,13 @@
     - ops
     - tools
     - packer
+    - mac
   - role: terraform
     tags:
     - ops
     - tools
     - terraform
+    - mac
   - role: virtualbox
     tags:
     - ops
@@ -68,6 +71,7 @@
     - ops
     - tools
     - vagrant
+    - mac
   - role: snap
     tags:
     - snap
@@ -81,6 +85,7 @@
     - dev
     - go
     - golang
+    - mac
   - role: node
     tags:
     - dev
@@ -88,6 +93,7 @@
     - nodejs
     - js
     - javascript
+    - mac
   - role: gcloud
     tags:
     - ops

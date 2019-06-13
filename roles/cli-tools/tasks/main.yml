@@ -26,17 +26,45 @@
     - jq
   when: ansible_distribution == "Archlinux"
 
+- name: Install gotop tap (MacOSX)
+  homebrew_tap:
+    name: cjbassi/gotop
+  when: ansible_distribution == "MacOSX"
+
+- name: Install cli tools from repository (MacOSX)
+  homebrew:
+    name:
+    - htop
+    - iftop
+    - make
+    - openssl
+    - wget
+    - curl
+    - subversion
+    - jq
+    - bat
+    - gotop
+    - ctop
+    - cfssl
+    - gopass
+  when: ansible_distribution == "MacOSX"
+
 - name: Install bat
   include: bat.yml
+  when: ansible_distribution == "Ubuntu" or ansible_distribution == "Archlinux"
 
 - name: Install gotop
   include: gotop.yml
+  when: ansible_distribution == "Ubuntu" or ansible_distribution == "Archlinux"
 
 - name: Install ctop
   include: ctop.yml
+  when: ansible_distribution == "Ubuntu" or ansible_distribution == "Archlinux"
 
 - name: Install cfssl
   include: cfssl.yml
+  when: ansible_distribution == "Ubuntu" or ansible_distribution == "Archlinux"
 
 - name: Install gopass
   include: gopass.yml
+  when: ansible_distribution == "Ubuntu" or ansible_distribution == "Archlinux"

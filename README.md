@@ -34,6 +34,25 @@ The playbook will install and configure the following tools:
 
 * Ansible >= 2.6
 
+### MacOSX
+
+* Install [homebrew](https://brew.sh/)
+* Install ansible `brew install ansible`
+
+### Ubuntu
+
+Install ansible
+
+```bash
+sudo add-apt-repository ppa:ansible/ansible
+sudo apt-get update
+sudo apt-get install ansible
+```
+
+### Manjaro
+
+Install ansible `sudo pacman -S ansible`
+
 ## Getting started
 
 Just run the `devbox` script, on the first run it will ask some question to your personalize the installed configurations.

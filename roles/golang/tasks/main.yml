@@ -1,9 +1,18 @@
-- name: Install go 1.12
+- name: Install go 1.12 (Linux)
   become: yes
   snap:
     classic: yes
     channel: 1.12/stable
     name: go
+  when: ansible_distribution == "Ubuntu" or ansible_distribution == "Archlinux"
+
+- name: Install go 1.12 and required tools (MacOSX)
+  homebrew:
+    name: 
+    - go
+    - dep
+    - glide
+  when: ansible_distribution == "MacOSX"
 
 - name: Create go path related directories
   file:

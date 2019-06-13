@@ -1,25 +1,8 @@
-- name: Register file
-  stat:
-    path: /usr/local/bin/terraform
-  register: terraform
-  changed_when: False
+- name: Install terraform (Linux)
+  include: linux.yml
+  when: ansible_distribution == "Ubuntu" or ansible_distribution == "Archlinux"
 
-- name: Download terraform
-  get_url:
-    url: https://releases.hashicorp.com/terraform/{{ terraform_version }}/terraform_{{ terraform_version }}_linux_amd64.zip
-    dest: /tmp/terraform.zip
-  when: terraform.stat.exists == False
-
-- name: Unarchive terraform
-  become: yes
-  unarchive:
-    src: /tmp/terraform.zip
-    dest: /usr/local/bin
-    remote_src: yes
-  when: terraform.stat.exists == False
-
-- name: Remove downloaded archive
-  file:
-    path: /tmp/terraform.zip
-    state: absent
-  when: terraform.stat.exists == False
+- name: Install terraform (MacOSX)
+  homebrew:
+    name: terraform
+  when: ansible_distribution == "MacOSX"

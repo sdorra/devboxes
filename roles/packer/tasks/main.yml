@@ -1,25 +1,8 @@
-- name: Register file
-  stat:
-    path: /usr/local/bin/packer
-  register: packer
-  changed_when: False
+- name: Install packer (Linux)
+  include: linux.yml
+  when: ansible_distribution == "Ubuntu" or ansible_distribution == "Archlinux"
 
-- name: Download packer
-  get_url:
-    url: https://releases.hashicorp.com/packer/{{ packer_version }}/packer_{{ packer_version }}_linux_amd64.zip
-    dest: /tmp/packer.zip
-  when: packer.stat.exists == False
-
-- name: Unarchive packer
-  become: yes
-  unarchive:
-    src: /tmp/packer.zip
-    dest: /usr/local/bin
-    remote_src: yes
-  when: packer.stat.exists == False
-
-- name: Remove downloaded archive
-  file:
-    path: /tmp/packer.zip
-    state: absent
-  when: packer.stat.exists == False
+- name: Install packer (MacOSX)
+  homebrew:
+    name: packer
+  when: ansible_distribution == "MacOSX"

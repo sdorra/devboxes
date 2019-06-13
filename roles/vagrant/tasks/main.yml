@@ -5,3 +5,8 @@
 - name: Install vagrant (Arch)
   include: arch.yml
   when: ansible_distribution == "Archlinux"
+
+- name: Install vagrant (MacOSX)
+  homebrew_cask:
+    name: vagrant
+  when: ansible_distribution == "MacOSX"
