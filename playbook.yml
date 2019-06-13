@@ -6,28 +6,34 @@
     - git
     - scm
     - vcs
+    - mac
   - role: zsh
     tags:
     - zsh
     - shell
+    - mac
   - role: tmux
     tags:
     - shell
     - tmux
+    - mac
   - role: vim
     tags:
     - shell
     - vim
+    - mac
   - role: gpg
     tags:
     - shell
     - gpg
     - gnupg
+    - mac
   - role: mercurial
     tags:
     - shell
     - mercurial
     - hg
+    - mac
   - role: cli-tools
     tags:
     - shell

@@ -19,6 +19,16 @@
     - bat
   when: ansible_distribution == "Ubuntu"
 
+- name: Install zsh and required dependencies (MacOSX)
+  homebrew:
+    name:
+    - zsh
+    - python3
+    # - python3-pip is installed with python3
+    - fzf
+    - bat
+  when: ansible_distribution == "MacOSX"
+
 - name: Clone fzf repository (Ubuntu)
   git:
     repo: https://github.com/junegunn/fzf
@@ -51,8 +61,13 @@
     name: "{{ lookup('env','USER') }}"
     shell: "{{ whichzsh.stdout }}"
 
-- name: Install terminal font
-  include: font.yml
+- name: Install terminal font (Linux)
+  include: font_linux.yml
+  when: ansible_distribution == "Ubuntu" or ansible_distribution == "Archlinux"
+
+- name: Install terminal font (MacOSX)
+  include: font_osx.yml
+  when: ansible_distribution == "MacOSX"
 
 - name: Install oh-my-zsh
   git:
@@ -81,8 +96,23 @@
   with_items:
   - editorconfig
 
-- name: Install pywal
+- name: Install pywal (Linux)
   become: yes
   pip:
     name: pywal
     executable: pip3
+  when: ansible_distribution == "Ubuntu" or ansible_distribution == "Archlinux"
+
+# we need to use the version from master for MacOSX, because of a bug in pywal 3.3.0
+# https://github.com/dylanaraps/pywal/issues/382
+
+- name: Capture if pywal is installed (MacOSX)
+  stat:
+    path: /usr/local/bin/wal
+  register: wal
+
+- name: Install pywal (MacOSX)
+  pip:
+    name: https://github.com/dylanaraps/pywal/archive/master.zip
+    executable: pip3
+  when: not wal.stat.exists and ansible_distribution == "MacOSX"

@@ -43,4 +43,4 @@ After that it will ask for your sudo password and then apply the ansible playboo
 
 - [ ] Automatically Git Updates
 - [ ] Role chooser
-- [ ] Support for Mac OS X
+- [ ] Complete Support for Mac OS X

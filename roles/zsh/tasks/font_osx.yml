@@ -1,0 +1,11 @@
+- name: Create fonts directory
+  file:
+    path: ~/Library/Fonts
+    state: directory
+
+- name: Install fira nerd-font
+  unarchive:
+    src: https://github.com/ryanoasis/nerd-fonts/releases/download/v2.0.0/FiraCode.zip
+    dest: ~/Library/Fonts
+    remote_src: yes
+    creates:  ~/Library/Fonts/Fura Code Medium Nerd Font Complete.ttf
