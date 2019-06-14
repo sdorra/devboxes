@@ -1,5 +1,6 @@
 # tmux
-export TERM="xterm-256color"
+#export TERM="xterm-256color"
+export TERM="screen-256color"
 
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
@@ -163,3 +164,4 @@ alias yaml="bat --language='yaml'"
 
 # configure go dev environment
 [ -f ~/.gorc ] && source ~/.gorc
+
