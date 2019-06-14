@@ -1,6 +1,11 @@
-# tmux
-#export TERM="xterm-256color"
-export TERM="screen-256color"
+# we use xterm as default,
+# but we use screen for tmux.
+# This is required to support home+end keys
+if [ -n "${TMUX}" ]; then
+    export TERM="screen-256color"
+else
+    export TERM="xterm-256color"
+fi
 
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
