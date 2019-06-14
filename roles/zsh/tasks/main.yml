@@ -87,6 +87,8 @@
     state: directory
   with_items:
   - editorconfig
+  - java-env
+  - vegeta
 
 - name: Install custom oh-my-zsh plugins
   file:
@@ -95,6 +97,8 @@
     state: link
   with_items:
   - editorconfig
+  - java-env
+  - vegeta
 
 - name: Install pywal (Linux)
   become: yes

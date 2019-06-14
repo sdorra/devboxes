@@ -99,6 +99,7 @@ plugins=(
   # java
   mvn
   gradle
+  java-env
 
   # containers
   docker
@@ -110,11 +111,9 @@ plugins=(
 
   # utils
   wd
+  vegeta
   editorconfig
 )
-
-# load java-env plugin if is
-[ -d ~/.oh-my-zsh/custom/plugins/java-env ] && plugins+=(java-env)
 
 source $ZSH/oh-my-zsh.sh
 

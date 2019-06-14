@@ -47,6 +47,7 @@
     - ctop
     - cfssl
     - gopass
+    - vegeta
   when: ansible_distribution == "MacOSX"
 
 - name: Install bat
@@ -67,4 +68,8 @@
 
 - name: Install gopass
   include: gopass.yml
+  when: ansible_distribution == "Ubuntu" or ansible_distribution == "Archlinux"
+
+- name: Install vegeta
+  include: vegeta.yml
   when: ansible_distribution == "Ubuntu" or ansible_distribution == "Archlinux"
