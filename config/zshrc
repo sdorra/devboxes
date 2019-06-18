@@ -28,6 +28,8 @@ POWERLEVEL9K_MODE="nerdfont-complete"
 POWERLEVEL9K_PROMPT_ON_NEWLINE=true
 POWERLEVEL9K_MULTILINE_LAST_PROMPT_PREFIX="▶ "
 POWERLEVEL9K_MULTILINE_FIRST_PROMPT_PREFIX=""
+POWERLEVEL9K_SHORTEN_DIR_LENGTH=2
+POWERLEVEL9K_SHORTEN_STRATEGY="Default"
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
