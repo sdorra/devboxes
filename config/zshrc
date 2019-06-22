@@ -162,6 +162,11 @@ alias dev_mode="export POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(context dir vcs)"
 alias kube_mode="export POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(context dir kubecontext)"
 alias ops_mode=kube_mode
 alias yaml="bat --language='yaml'"
+alias preview="fzf --preview 'bat --color \"always\" {}'"
+
+# fzf
+# add support for ctrl+o to open selected file in VS Code
+export FZF_DEFAULT_OPTS="--bind='ctrl-o:execute(code {})+abort'"
 
 # pywal
 # https://github.com/dylanaraps/pywal/wiki/Getting-Started#making-the-colorscheme-persist-on-reboot
