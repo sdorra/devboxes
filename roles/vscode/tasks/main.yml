@@ -18,7 +18,7 @@
   command: "code --install-extension '{{ item }}'"
   with_items:
   - ms-kubernetes-tools.vscode-kubernetes-tools
-  - peterjausovec.vscode-docker
+  - ms-azuretools.vscode-docker
   - EditorConfig.EditorConfig
   - dbaeumer.vscode-eslint
   - esbenp.prettier-vscode

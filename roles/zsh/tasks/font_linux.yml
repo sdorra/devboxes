@@ -24,3 +24,10 @@
 - name: Set nerd-font for current terminal profile
   shell: gsettings set "org.gnome.Terminal.Legacy.Profile:/org/gnome/terminal/legacy/profiles:/:{{ profile.stdout }}/" font "FuraCode Nerd Font Medium 11"
   when: font.changed
+
+- name: Install powerline font
+  become: yes
+  apt: pkg {{ item }} state=present
+  with_items:
+    - powerline
+    - fonts-powerline

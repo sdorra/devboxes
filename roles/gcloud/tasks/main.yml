@@ -11,6 +11,14 @@
   shell: gcloud components install kubectl --quiet
   args:
     creates: /usr/local/google-cloud-sdk/bin/kubectl
+  when: ansible_distribution != "Ubuntu"
+
+- name: Install kubectl 
+  become: yes
+  snap:
+    classic: yes
+    name: kubectl
+  when: ansible_distribution == "Ubuntu"
 
 - name: Install kubectx
   include: kubectx.yml
