@@ -34,7 +34,7 @@
   when: ansible_distribution == "Ubuntu"
 
 - name: Install fzf (Ubuntu)
-  shell: ~/.fzf/install
+  shell: ~/.fzf/install --no-update-rc
   args:
     creates: ~/.fzf.zsh
   when: ansible_distribution == "Ubuntu"
