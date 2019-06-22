@@ -58,6 +58,14 @@ Install ansible `sudo pacman -S ansible`
 Just run the `devbox` script, on the first run it will ask some question to your personalize the installed configurations.
 After that it will ask for your sudo password and then apply the ansible playbook. 
 
+## tags
+
+Its also possible to only apply certain tags, e.g.
+
+`devbox --tags zsh`
+
+See [playbook](playbook.yml) for existing tags.
+
 ## Todo
 
 - [ ] Automatically Git Updates
