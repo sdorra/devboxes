@@ -10,6 +10,7 @@
     - curl
     - subversion
     - jq
+    - ncdu
   when: ansible_distribution == "Ubuntu"
 
 - name: Install cli tools from repository (Arch)
@@ -25,6 +26,7 @@
     - subversion
     - jq
     - diff-so-fancy
+    - ncdu
   when: ansible_distribution == "Archlinux"
 
 - name: Install gotop tap (MacOSX)
@@ -50,6 +52,7 @@
     - gopass
     - vegeta
     - diff-so-fancy
+    - ncdu
   when: ansible_distribution == "MacOSX"
 
 - name: Install diff-so-fancy (Ubuntu)

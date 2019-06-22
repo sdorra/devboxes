@@ -163,6 +163,7 @@ alias kube_mode="export POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(context dir kubeconte
 alias ops_mode=kube_mode
 alias yaml="bat --language='yaml'"
 alias preview="fzf --preview 'bat --color \"always\" {}'"
+alias ncdu="ncdu --color dark -rr -x --exclude .git --exclude node_modules"
 
 # fzf
 # add support for ctrl+o to open selected file in VS Code
