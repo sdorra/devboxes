@@ -1,0 +1,44 @@
+- name: Check if npm is installed
+  shell: which npm
+  register: npm
+  failed_when: False
+  changed_when: False
+
+# beautiful gif terminal recording
+- name: Install terminalizer
+  become: yes
+  npm:
+    name: terminalizer
+    global: yes
+    unsafe_perm: yes
+  when: npm.rc == 0
+
+- name: Install screen recording packages (Ubuntu)
+  become: yes
+  apt:
+    name:
+    # gif image optimization
+    - gifsicle 
+    # gif screen recording
+    # - peek
+    # video screen recording
+    - kazam
+  when: ansible_distribution == "Ubuntu"
+
+- name: Install screen recording packages (Arch)
+  become: yes
+  pacman:
+    name:
+    # gif image optimization
+    - gifsicle 
+    # gif screen recording
+    - peek
+  when: ansible_distribution == "Archlinux"
+
+- name: Install kazam aur package (Arch)
+  include: kazam_arch.yml
+  when: ansible_distribution == "Archlinux"  
+
+- name: Install peek (Ubuntu)
+  include: peek_ubuntu.yml
+  when: ansible_distribution == "Ubuntu"

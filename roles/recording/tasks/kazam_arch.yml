@@ -1,0 +1,58 @@
+- name: Install build-tools
+  become: yes
+  pacman:
+    name:
+    - file
+    - base-devel
+
+- name: Check if kazam is installed
+  shell: which kazam
+  register: kazam
+  failed_when: False
+  changed_when: False
+
+- name: Download kazam aur package
+  get_url:
+    url: https://aur.archlinux.org/cgit/aur.git/snapshot/kazam.tar.gz
+    dest: /tmp/kazam.tar.gz
+  when: kazam.rc != 0
+
+- name: Extract tarball
+  unarchive:
+    src: /tmp/kazam.tar.gz
+    dest: /tmp
+  when: kazam.rc != 0
+
+- name: Install missing dependencies
+  become: yes
+  shell: source PKGBUILD && pacman -Syu --noconfirm --needed --asdeps "${makedepends[@]}" "${depends[@]}"
+  args:
+    chdir: /tmp/kazam
+    executable: /bin/bash
+  when: kazam.rc != 0
+
+- name: build package
+  shell: makepkg --noconfirm --noprogressbar -mfs
+  args:
+    chdir: /tmp/kazam
+  when: kazam.rc != 0
+
+- name: capture package name
+  shell: ls -1 /tmp/kazam | grep pkg.tar
+  register: kazam_pkg
+  changed_when: False
+  when: kazam.rc != 0
+
+- name: install compiled kazam package
+  become: yes
+  pacman:
+    name: "/tmp/kazam/{{ kazam_pkg.stdout }}"
+  when: kazam.rc != 0
+
+- name: remove temporary files
+  file:
+    path: "/tmp/{{ item }}"
+    state: absent
+  with_items:
+  - kazam
+  - kazam.tar.gz

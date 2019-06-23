@@ -107,3 +107,6 @@
     tags:
     - dev
     - idea
+  - role: recording
+    tags:
+    - recording

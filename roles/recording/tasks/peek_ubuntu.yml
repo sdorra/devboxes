@@ -1,0 +1,13 @@
+- name: Check if peek is installed
+  shell: which peek
+  register: peek
+  failed_when: False
+  changed_when: False
+
+# peek from repository crashes
+# https://github.com/phw/peek/issues/419
+- name: Install peek (Ubuntu)
+  become: yes
+  apt:
+    deb: http://ftp.us.debian.org/debian/pool/main/p/peek/peek_1.3.1-6~bpo9+1_amd64.deb
+  when: peek.rc != 0
