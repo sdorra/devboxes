@@ -165,6 +165,7 @@ alias ops_mode=kube_mode
 alias yaml="bat --language='yaml'"
 alias preview="fzf --preview 'bat --color \"always\" {}'"
 alias ncdu="ncdu --color dark -rr -x --exclude .git --exclude node_modules"
+alias tldr="tldr --theme=base16"
 alias help="tldr"
 
 # fzf
