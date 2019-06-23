@@ -82,20 +82,14 @@
   file:
     path: "~/.oh-my-zsh/custom/plugins/{{ item }}"
     state: directory
-  with_items:
-  - editorconfig
-  - java-env
-  - vegeta
+  with_items: "{{ custom_omz_plugins }}"
 
 - name: Install custom oh-my-zsh plugins
   file:
     src: "{{ playbook_dir }}/config/oh-my-zsh-plugins/{{item}}.plugin.zsh"
     dest: "~/.oh-my-zsh/custom/plugins/{{ item }}/{{item}}.plugin.zsh"
     state: link
-  with_items:
-  - editorconfig
-  - java-env
-  - vegeta
+  with_items: "{{ custom_omz_plugins }}"
 
 - name: Install pywal (Linux)
   become: yes
