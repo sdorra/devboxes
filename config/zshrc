@@ -99,6 +99,7 @@ plugins=(
   git-flow
   mercurial
   svn
+  scm
 
   # javascript
   npm
