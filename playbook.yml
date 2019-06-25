@@ -94,9 +94,13 @@
     - js
     - javascript
     - mac
-  - role: gcloud
+  - role: k8s
     tags:
     - ops
+    - k8s
+    - kubernetes
+    - helm
+    - draft
     - gcloud
     - gke
   - role: vscode
