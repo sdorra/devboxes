@@ -1,0 +1,27 @@
+- name: capture installed draft version
+  shell: draft version --short | awk -F'+' '{print $1}' | sed 's/v//g'
+  register: draft
+  changed_when: False
+
+- name: download and unarchive
+  unarchive:
+    src: https://azuredraft.blob.core.windows.net/draft/draft-v{{ draft_version }}-linux-amd64.tar.gz
+    dest: /tmp
+    remote_src: yes
+  when: draft.stdout != draft_version
+
+- name: install draft
+  become: yes
+  copy:
+    src: /tmp/linux-amd64/draft
+    dest: /usr/local/bin/draft
+    owner: root
+    group: root
+    mode: 0755
+  when: draft.stdout != draft_version
+
+- name: remove temporary files
+  file:
+    path: /tmp/linux-amd64
+    state: absent
+  when: draft.stdout != draft_version

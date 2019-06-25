@@ -25,3 +25,6 @@
 
 - name: Install helm
   include: helm.yml
+
+- name: Install draft
+  include: draft.yml
