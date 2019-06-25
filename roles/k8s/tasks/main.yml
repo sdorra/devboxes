@@ -29,5 +29,8 @@
 - name: Install draft
   include: draft.yml
 
+- name: Install kustomize
+  include: kustomize.yml
+
 - name: Install kube-cleaner
   include: kube-cleaner.yml
