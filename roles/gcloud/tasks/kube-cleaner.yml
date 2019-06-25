@@ -1,0 +1,12 @@
+- name: Check if npm is installed
+  shell: which npm
+  register: npm
+  failed_when: False
+  changed_when: False
+
+- name: Install kube-cleaner npm packages
+  become: yes
+  npm:
+    name: kube-cleaner
+    global: yes
+  when: npm.rc == 0
