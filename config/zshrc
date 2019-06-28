@@ -94,6 +94,10 @@ POWERLEVEL9K_SHORTEN_STRATEGY="Default"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
+  # zsh
+  zsh-autosuggestions
+  zsh-syntax-highlighting
+
   # scm
   git
   git-flow

@@ -72,6 +72,18 @@
     dest: ~/.oh-my-zsh
     update: no
 
+- name: Install zsh-autosuggestions
+  git:
+    repo: https://github.com/zsh-users/zsh-autosuggestions.git
+    dest: ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions
+    update: no
+
+- name: Install zsh-syntax-highlighting
+  git:
+    repo: https://github.com/zsh-users/zsh-syntax-highlighting.git
+    dest: ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting
+    update: no
+
 - name: Install powerlevel9k theme
   git:
     repo: https://github.com/bhilburn/powerlevel9k
