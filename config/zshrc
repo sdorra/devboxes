@@ -167,6 +167,7 @@ alias preview="fzf --preview 'bat --color \"always\" {}'"
 alias ncdu="ncdu --color dark -rr -x --exclude .git --exclude node_modules"
 alias tldr="tldr --theme=base16"
 alias help="tldr"
+alias peek="peek -b ffmpeg"
 
 # fzf
 # add support for ctrl+o to open selected file in VS Code
