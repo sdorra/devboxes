@@ -16,6 +16,10 @@
     - maven
   when: ansible_distribution == "Ubuntu"
 
+- name: Install java and maven (MacOSX)
+  include: osx.yml
+  when: ansible_distribution == "MacOSX"
+
 - name: Create java-env plugin directory
   file:
     path: ~/.oh-my-zsh/custom/plugins/java-env

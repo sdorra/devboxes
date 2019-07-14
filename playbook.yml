@@ -80,6 +80,7 @@
     - dev
     - java
     - jdk
+    - mac
   - role: golang
     tags:
     - dev

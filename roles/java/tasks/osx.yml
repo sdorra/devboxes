@@ -1,0 +1,15 @@
+- name: Install cask-versions tap
+  homebrew_tap:
+    name:
+    - homebrew/cask-versions
+
+- name: Install java 8 & 11
+  homebrew_cask:
+    name:
+    - homebrew/cask-versions/adoptopenjdk8
+    - java11
+
+- name: Install maven
+  homebrew:
+    name:
+      - maven
