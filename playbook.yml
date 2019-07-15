@@ -108,6 +108,7 @@
     tags:
     - dev
     - vscode
+    - mac
   - role: idea
     tags:
     - dev

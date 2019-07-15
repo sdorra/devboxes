@@ -1,4 +1,4 @@
-- name: Install code
+- name: Install vscode
   become: yes
   snap:
     name: code
@@ -13,6 +13,11 @@
     classic: yes
     state: absent
   when: ansible_system == "Linux"
+
+- name: Install vscode
+  homebrew_cask:
+    name: visual-studio-code
+  when: ansible_distribution == "MacOSX"
 
 - name: install vscode extensions
   command: "code --install-extension '{{ item }}'"
@@ -34,5 +39,3 @@
   - ms-vsliveshare.vsliveshare
   register: vscode_result
   changed_when: "'already installed' not in vscode_result.stdout"
-
-# todo install vscode on mac
