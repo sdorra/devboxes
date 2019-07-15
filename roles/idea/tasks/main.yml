@@ -1,5 +1,11 @@
-- name: Install Intellij Idea Ultimate
+- name: Install Intellij Idea Ultimate (Linux)
   become: yes
   snap:
     classic: yes
     name: intellij-idea-ultimate
+  when: ansible_system == "Linux"
+
+- name: Install Intellij Idea Ultimate (MacOSX)
+  homebrew_cask:
+    name: intellij-idea
+  when: ansible_distribution == "MacOSX"
