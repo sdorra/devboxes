@@ -1,0 +1,12 @@
+- name: Install k8s tools
+  homebrew:
+    name: 
+    - kubernetes-helm
+    - draft
+    - kubectx
+    - kustomize
+    - kubectl
+
+- name: Install google-cloud-sdk
+  homebrew_cask:
+    name: google-cloud-sdk

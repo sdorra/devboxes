@@ -1,36 +1,10 @@
-- name: Install gcloud (Ubuntu)
-  include: ubuntu.yml
-  when: ansible_distribution == "Ubuntu"
+- name: Install k8s tools (Linux)
+  include: linux.yml
+  when: ansible_system == "Linux"
 
-- name: Install gcloud (Arch)
-  include: arch.yml
-  when: ansible_distribution == "Archlinux"
-
-- name: Install kubectl
-  become: yes
-  shell: gcloud components install kubectl --quiet
-  args:
-    creates: /usr/local/google-cloud-sdk/bin/kubectl
-  when: ansible_distribution != "Ubuntu"
-
-- name: Install kubectl 
-  become: yes
-  snap:
-    classic: yes
-    name: kubectl
-  when: ansible_distribution == "Ubuntu"
-
-- name: Install kubectx
-  include: kubectx.yml
-
-- name: Install helm
-  include: helm.yml
-
-- name: Install draft
-  include: draft.yml
-
-- name: Install kustomize
-  include: kustomize.yml
+- name: Install k8s tools (MacOSX)
+  include: osx.yml
+  when: ansible_distribution == "MacOSX"
 
 - name: Install kube-cleaner
   include: kube-cleaner.yml
