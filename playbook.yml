@@ -47,6 +47,7 @@
     - docker-machine
     - ops
     - container
+    - mac
   - role: packer
     tags:
     - ops

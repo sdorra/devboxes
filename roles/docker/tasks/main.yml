@@ -1,47 +1,8 @@
-- name: Install docker (Arch)
-  become: yes
-  pacman:
-    name: docker
-  when: ansible_distribution == "Archlinux"
+- name: Install docker (Linux)
+  include: linux.yml
+  when: ansible_system == "Linux"
 
-- name: Install docker (Ubuntu)
-  include: ubuntu.yml
-  when: ansible_distribution == "Ubuntu"
-
-- name: Start and enable docker daemon
-  become: yes
-  systemd:
-    name: docker.service
-    enabled: yes
-    state: started
-
-- name: Add user to docker group
-  become: yes
-  user:
-    name: "{{ lookup('env','USER') }}"
-    groups: docker
-    append: yes
-
-- name: Get kernel name
-  shell: uname -s
-  register: kernel
-  changed_when: False
-
-- name: Get machine hardware name
-  shell: uname -m
-  register: machine
-  changed_when: False
-
-- name: Install docker-compose
-  become: yes
-  get_url:
-    url: https://github.com/docker/compose/releases/download/1.24.0/docker-compose-{{ kernel.stdout }}-{{ machine.stdout }}
-    dest: /usr/local/bin/docker-compose
-    mode: '0755'
-
-- name: Install docker-machine
-  become: yes
-  get_url:
-    url: https://github.com/docker/machine/releases/download/v0.16.0/docker-machine-{{ kernel.stdout }}-{{ machine.stdout }}
-    dest: /usr/local/bin/docker-machine
-    mode: '0755'
+- name: Install docker (MacOSX)
+  homebrew_cask:
+    name: docker-edge
+  when: ansible_distribution == "MacOSX"
