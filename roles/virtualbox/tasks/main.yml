@@ -7,3 +7,10 @@
   pacman:
     name: virtualbox
   when: ansible_distribution == "Archlinux"
+
+- name: Install virtualbox (MacOSX)
+  homebrew_cask:
+    name: 
+    - virtualbox
+    - virtualbox-extension-pack
+  when: ansible_distribution == "MacOSX"

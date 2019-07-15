@@ -1,4 +1,4 @@
-- name: Install vscode
+- name: Install vscode (Linux)
   become: yes
   snap:
     name: code
@@ -6,7 +6,7 @@
     state: present
   when: ansible_system == "Linux"
 
-- name: Remove deprecated vscode
+- name: Remove deprecated vscode (Linux)
   become: yes
   snap:
     name: vscode
@@ -14,7 +14,7 @@
     state: absent
   when: ansible_system == "Linux"
 
-- name: Install vscode
+- name: Install vscode (MacOSX)
   homebrew_cask:
     name: visual-studio-code
   when: ansible_distribution == "MacOSX"

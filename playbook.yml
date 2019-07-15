@@ -66,6 +66,7 @@
     - virtualbox
     - vms
     - vbox
+    - mac
   - role: vagrant
     tags:
     - ops
