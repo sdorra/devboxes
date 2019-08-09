@@ -1,0 +1,18 @@
+- name: Install Intellij Idea Ultimate
+  snap:
+    classic: yes
+    name: intellij-idea-ultimate
+  
+- name: Increase file descriptor limit
+  copy:
+    src: "{{ playbook_dir }}/config/90-idea.conf"
+    dest: /etc/sysctl.d/90-idea.conf
+    owner: root
+    group: root
+    mode: 0644
+  register: inotifylimit
+
+- name: apply new file descriptor limit
+  command: sysctl -p --system
+  when: inotifylimit.changed
+

@@ -1,8 +1,6 @@
-- name: Install Intellij Idea Ultimate (Linux)
+- name: Install Intellij Idea Ultimate on Linux
+  include: linux.yml
   become: yes
-  snap:
-    classic: yes
-    name: intellij-idea-ultimate
   when: ansible_system == "Linux"
 
 - name: Install Intellij Idea Ultimate (MacOSX)
