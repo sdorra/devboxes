@@ -8,16 +8,16 @@
   register: lsbrelease
   changed_when: False
 
-- name: Remove docker stable apt repository (Ubuntu)
-  become: yes
-  apt_repository:
-    repo: deb [arch=amd64] https://download.docker.com/linux/ubuntu {{ lsbrelease.stdout }} stable
-    state: absent
-
-- name: Install docker test apt repository (Ubuntu)
+- name: Remove docker test apt repository (Ubuntu)
   become: yes
   apt_repository:
     repo: deb [arch=amd64] https://download.docker.com/linux/ubuntu {{ lsbrelease.stdout }} test
+    state: absent
+
+- name: Install docker stable apt repository (Ubuntu)
+  become: yes
+  apt_repository:
+    repo: deb [arch=amd64] https://download.docker.com/linux/ubuntu {{ lsbrelease.stdout }} stable
 
 - name: Install docker-ce package (Ubuntu)
   become: yes
