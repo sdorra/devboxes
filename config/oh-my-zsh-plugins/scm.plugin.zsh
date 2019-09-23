@@ -13,13 +13,3 @@ scm-root () {
     cd "${ROOT}"
   fi
 }
-
-goto-scm-root () {
-  ROOT=$(scm-root)
-  if [ "$?" != 0 ]; then
-    echo "no repository root found"
-    return 1
-  else
-    cd "${ROOT}"
-  fi
-}
