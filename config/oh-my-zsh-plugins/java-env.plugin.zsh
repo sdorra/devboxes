@@ -7,7 +7,9 @@ switch-java() {
     else
       NEW_HOME=$(linux_java_home "${VERSION}")
     fi
-    if [ ! -n "${NEW_HOME}" ]; then
+    if [ $? != 0 ]; then
+      echo "java version ${VERSION} is not installed"
+    elif [ ! -n "${NEW_HOME}" ]; then
       echo "java version ${VERSION} is not installed"
     else
       echo "switching to java ${NEW_HOME}"
