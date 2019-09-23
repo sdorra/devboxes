@@ -28,7 +28,7 @@ The playbook will install and configure the following tools:
 
 * Ubuntu (tested on 19.04)
 * Manjaro Linux
-* Mac OS X (support coming soon)
+* Mac OS X
 
 ## Prerequisites
 
@@ -55,10 +55,10 @@ Install ansible `sudo pacman -S ansible`
 
 ## Getting started
 
-Just run the `devbox` script, on the first run it will ask some question to your personalize the installed configurations.
+Just run the `devbox` script, on the first run it will ask some question to personalize the installed configurations.
 After that it will ask for your sudo password and then apply the ansible playbook. 
 
-## tags
+## Tags
 
 Its also possible to only apply certain tags, e.g.
 
@@ -70,4 +70,3 @@ See [playbook](playbook.yml) for existing tags.
 
 - [ ] Automatically Git Updates
 - [ ] Role chooser
-- [ ] Complete Support for Mac OS X

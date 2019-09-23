@@ -10,6 +10,7 @@
     name: snapd.socket
     enabled: yes
     state: started
+  when: ansible_system == "Linux"
 
 - name: Enable support for classic snaps
   become: yes
