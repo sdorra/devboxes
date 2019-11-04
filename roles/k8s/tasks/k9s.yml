@@ -1,0 +1,33 @@
+- name: capture installed k9s version
+  shell: k9s version -s | grep Version | awk '{print $NF}'
+  register: k9s
+  changed_when: False
+
+- name: Create temporary directory
+  file:
+    path: /tmp/k9s.temp
+    state: directory
+  when: k9s.stdout != k9s_version
+
+- name: Download and unarchive
+  unarchive:
+    src: https://github.com/derailed/k9s/releases/download/{{k9s_version}}/k9s_{{k9s_version}}_Linux_x86_64.tar.gz
+    dest: /tmp/k9s.temp
+    remote_src: yes
+  when: k9s.stdout != k9s_version
+
+- name: install k9s
+  become: yes
+  copy:
+    src: /tmp/k9s.temp/k9s
+    dest: /usr/local/bin/k9s
+    owner: root
+    group: root
+    mode: 0755
+  when: k9s.stdout != k9s_version
+
+- name: remove temporary files
+  file:
+    path: /tmp/k9s.temp
+    state: absent
+  when: k9s.stdout != k9s_version
