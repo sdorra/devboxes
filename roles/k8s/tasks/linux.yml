@@ -31,3 +31,9 @@
 
 - name: Install kustomize
   include: kustomize.yml
+
+- name: Install k9s
+  include: k9s.yml
+
+- name: Install velero
+  include: velero.yml

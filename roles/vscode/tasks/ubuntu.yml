@@ -1,0 +1,17 @@
+- name: Remove old snap installation (Ubuntu)
+  snap:
+    name: code
+    state: absent
+
+- name: Install vscode gpg key (Ubuntu)
+  apt_key:
+    url: https://packages.microsoft.com/keys/microsoft.asc
+
+- name: Install vscode apt repository (Ubuntu)
+  apt_repository:
+    repo: deb [arch=amd64] https://packages.microsoft.com/repos/vscode stable main
+
+- name: Install vscode package (Ubuntu)
+  apt:
+    name: code
+

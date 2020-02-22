@@ -1,0 +1,27 @@
+- name: capture installed velero version
+  shell: velero version --client-only | grep 'Version' | awk -F':' '{print $NF}' | sed -e 's/^\s*v//g'
+  register: velero
+  changed_when: False
+
+- name: download and unarchive velero
+  unarchive:
+    src: https://github.com/vmware-tanzu/velero/releases/download/v{{ velero_version }}/velero-v{{ velero_version }}-linux-amd64.tar.gz
+    dest: /tmp
+    remote_src: yes
+  when: velero.stdout != velero_version
+
+- name: install velero
+  become: yes
+  copy:
+    src: /tmp/velero-v{{ velero_version }}-linux-amd64/velero
+    dest: /usr/local/bin/velero
+    owner: root
+    group: root
+    mode: 0755
+  when: velero.stdout != velero_version
+
+- name: remove temporary files
+  file:
+    path: /tmp/velero-v{{ velero_version }}-linux-amd64
+    state: absent
+  when: velero.stdout != velero_version

@@ -6,6 +6,8 @@
     - kubectx
     - kustomize
     - kubectl
+    - derailed/k9s/k9s
+    - velero
 
 - name: Install google-cloud-sdk
   homebrew_cask:
