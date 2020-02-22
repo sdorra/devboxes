@@ -32,7 +32,6 @@
   - EditorConfig.EditorConfig
   - dbaeumer.vscode-eslint
   - esbenp.prettier-vscode
-  - flowtype.flow-for-vscode
   - vscoss.vscode-ansible
   - k--kato.intellij-idea-keybindings
   - mauve.terraform
