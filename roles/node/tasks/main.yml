@@ -6,10 +6,11 @@
     channel: 10/stable
   when: ansible_distribution == "Ubuntu" or ansible_distribution == "Archlinux"
 
-- name: Install node (MacOSX)
+- name: Install node and yarn (MacOSX)
   homebrew:
     name: 
     - node@10
+    - yarn
     install_options: force
   register: node
   when: ansible_distribution == "MacOSX"
@@ -25,8 +26,14 @@
     name: "{{ item }}"
     global: yes
   with_items:
-  - yarn
   - colortest
   - prettier
   - create-react-app
   - tldr
+
+- name: Install yarn
+  become: yes
+  npm:
+    name: yarn
+    global: yes
+  when: ansible_distribution == "Ubuntu" or ansible_distribution == "Archlinux"
