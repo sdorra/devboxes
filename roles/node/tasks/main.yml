@@ -3,21 +3,28 @@
   snap:
     name: node
     classic: yes
-    channel: 10/stable
+    channel: 12/stable
   when: ansible_distribution == "Ubuntu" or ansible_distribution == "Archlinux"
 
-- name: Install node (MacOSX)
+- name: Remove node 10 (MacOSX)
   homebrew:
-    name: 
-    - node@10
-    install_options: force
-  register: node
+    name: node@10
+    state: absent
   when: ansible_distribution == "MacOSX"
 
-# we have to link with --force, because node@10 is keg only
-- name: link node keg (MacOSX)
-  shell: brew link node@10 --force
-  when: node.changed and ansible_distribution == "MacOSX"
+- name: Install node and yarn (MacOSX)
+  homebrew:
+    name: 
+    - node
+    - yarn
+  when: ansible_distribution == "MacOSX"
+
+- name: Install yarn
+  become: yes
+  npm:
+    name: yarn
+    global: yes
+  when: ansible_distribution == "Ubuntu" or ansible_distribution == "Archlinux"
 
 - name: Install global npm packages
   become: yes
@@ -25,7 +32,6 @@
     name: "{{ item }}"
     global: yes
   with_items:
-  - yarn
   - colortest
   - prettier
   - create-react-app

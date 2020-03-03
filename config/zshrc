@@ -192,3 +192,5 @@ export FZF_DEFAULT_OPTS="--bind='ctrl-o:execute(code {})+abort'"
 # configure go dev environment
 [ -f ~/.gorc ] && source ~/.gorc
 
+# load iTerm integration for osx
+test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
