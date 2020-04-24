@@ -194,3 +194,7 @@ export FZF_DEFAULT_OPTS="--bind='ctrl-o:execute(code {})+abort'"
 
 # load iTerm integration for osx
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+
+# load aliases if available
+[ -f ~/.kubectl_aliases ] && source ~/.kubectl_aliases
+[ -f ~/.docker_aliases ] && source ~/.docker_aliases
