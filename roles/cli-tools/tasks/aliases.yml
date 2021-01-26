@@ -1,0 +1,11 @@
+- name: Download kubectl_aliases
+  get_url:
+    url: https://rawgit.com/ahmetb/kubectl-alias/master/.kubectl_aliases
+    dest: ~/.kubectl_aliases
+    mode: '0440'
+
+- name: Download docker_aliases
+  get_url:
+    url: https://github.com/schnatterer/docker-aliases/releases/download/{docker_aliases_version}}/default.docker_aliases
+    dest: ~/.docker_aliases
+    mode: '0440'
