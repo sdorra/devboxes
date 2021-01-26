@@ -76,3 +76,6 @@
 - name: Install vegeta
   include: vegeta.yml
   when: ansible_distribution == "Ubuntu" or ansible_distribution == "Archlinux"
+
+- name: Install aliases
+  include: aliases.yml
