@@ -57,6 +57,7 @@
   user:
     name: "{{ lookup('env','USER') }}"
     shell: "{{ whichzsh.stdout }}"
+  when: not ansible_check_mode
 
 - name: Install terminal font (Linux)
   include: font_linux.yml
