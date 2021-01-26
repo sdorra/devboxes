@@ -8,8 +8,7 @@
 	ignore = "!gi() { curl -L -s https://www.gitignore.io/api/$@ ;}; gi"
 [credential]
 	helper = cache
-{% if diffsofancy.stat.exists %}
-#[pager]
-#  diff = diff-so-fancy | less --tabs=1,5 -RFX
-#  show = diff-so-fancy | less --tabs=1,5 -RFX
-{% endif %}
+[pull]
+	rebase = true
+[init]
+	defaultBranch = main
