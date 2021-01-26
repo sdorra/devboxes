@@ -38,8 +38,8 @@
   - marcostazi.vs-code-vagrantfile
   - redhat.vscode-yaml
   - jebbs.plantuml
-  - mrcrowl.hg
   - msjsdiag.debugger-for-chrome
   - ms-vsliveshare.vsliveshare
+  - arcticicestudio.nord-visual-studio-code
   register: vscode_result
   changed_when: "'already installed' not in vscode_result.stdout"

@@ -15,3 +15,20 @@
   pacman:
     name: bat
   when: ansible_distribution == "Archlinux"
+
+- name: Install bat (MacOSX)
+  homebrew:
+    name:
+    - bat
+  when: ansible_distribution == "MacOSX"
+
+- name: Create bat configuration directory
+  file:
+    path: ~/.config/bat
+    state: directory
+
+- name: Link bat configuration
+  file:
+    src: "{{ playbook_dir }}/config/bat-config"
+    dest: ~/.config/bat/config
+    state: link

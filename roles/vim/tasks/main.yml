@@ -27,6 +27,12 @@
     dest: ~/.vim_runtime/my_plugins/wal.vim
     update: no
 
+- name: install nord theme for vim
+  git:
+    repo: https://github.com/arcticicestudio/nord-vim
+    dest: ~/.vim_runtime/my_plugins/nord-vim
+    update: no
+
 - name: Link vimrc configuration
   file:
     src: "{{ playbook_dir }}/config/{{ item }}"
