@@ -26,4 +26,4 @@
 - name: Install virtualbox package (Ubuntu)
   become: yes
   apt:
-    name: virtualbox-6.0
+    name: virtualbox-6.1
