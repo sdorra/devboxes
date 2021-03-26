@@ -29,11 +29,6 @@
     - ncdu
   when: ansible_distribution == "Archlinux"
 
-- name: Install gotop tap (MacOSX)
-  homebrew_tap:
-    name: cjbassi/gotop
-  when: ansible_distribution == "MacOSX"
-
 - name: Install cli tools from repository (MacOSX)
   homebrew:
     name:

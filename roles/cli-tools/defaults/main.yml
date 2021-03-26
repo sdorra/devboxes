@@ -1,5 +1,5 @@
-bat_version: 0.11.0
-gotop_version: 3.0.0
-ctop_version: 0.7.2
-vegeta_version: 12.5.1
+bat_version: 0.18.0
+gotop_version: 4.1.1
+ctop_version: 0.7.5
+vegeta_version: 12.8.4
 docker_aliases_version: 0.4.0
