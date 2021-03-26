@@ -1,0 +1,28 @@
+
+- name: Install pywal (Linux)
+  become: yes
+  pip:
+    name: pywal
+    executable: pip3
+  when: ansible_distribution == "Ubuntu" or ansible_distribution == "Archlinux"
+
+# pywal requires imagemagick as backend
+- name: Install imagemagick (Linux)
+  become: yes
+  apt:
+    name: imagemagick
+  when: ansible_distribution == "Ubuntu"
+
+# we need to use the version from master for MacOSX, because of a bug in pywal 3.3.0
+# https://github.com/dylanaraps/pywal/issues/382
+
+- name: Capture if pywal is installed (MacOSX)
+  stat:
+    path: /usr/local/bin/wal
+  register: wal
+
+- name: Install pywal (MacOSX)
+  pip:
+    name: https://github.com/dylanaraps/pywal/archive/master.zip
+    executable: pip3
+  when: not wal.stat.exists and ansible_distribution == "MacOSX"
