@@ -1,6 +1,6 @@
 - name: Install packer (Linux)
   include: linux.yml
-  when: ansible_distribution == "Ubuntu" or ansible_distribution == "Archlinux"
+  when: ansible_system == "Linux"
 
 - name: Install packer (MacOSX)
   homebrew:
