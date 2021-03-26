@@ -1,0 +1,19 @@
+- name: Install aquasecurity gpg key (Ubuntu)
+  become: yes
+  apt_key:
+    url: https://aquasecurity.github.io/trivy-repo/deb/public.key
+
+- name: Capture lsb release (Ubuntu)
+  shell: lsb_release -cs
+  register: lsbrelease
+  changed_when: False
+
+- name: Install aquasecurity trivy repository (Ubuntu)
+  become: yes
+  apt_repository:
+    repo: deb [arch=amd64] https://aquasecurity.github.io/trivy-repo/deb {{ lsbrelease.stdout }} main
+
+- name: Install trivy package (Ubuntu)
+  become: yes
+  apt:
+    name: trivy

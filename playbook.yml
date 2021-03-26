@@ -102,3 +102,6 @@
   - role: recording
     tags:
     - recording
+  - role: trivy
+    tags:
+    - trivy
