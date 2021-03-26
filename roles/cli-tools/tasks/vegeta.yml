@@ -11,7 +11,7 @@
 
 - name: Download vegeta
   unarchive:
-    src: https://github.com/tsenart/vegeta/releases/download/cli%2Fv{{vegeta_version}}/vegeta-{{vegeta_version}}-linux-amd64.tar.gz
+    src: https://github.com/tsenart/vegeta/releases/download/v{{vegeta_version}}/vegeta_{{vegeta_version}}_linux_amd64.tar.gz
     dest: /tmp/vegeta
     remote_src: yes
   when: vegeta.stdout != vegeta_version

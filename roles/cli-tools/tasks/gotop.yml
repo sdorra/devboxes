@@ -6,7 +6,7 @@
 - name: Install gotop (Arch)
   become: yes
   unarchive:
-    src: https://github.com/xxxserxxx/gotop/releases/download/{{ gotop_version }}/gotop_{{ gotop_version }}_linux_amd64.tgz
+    src: https://github.com/xxxserxxx/gotop/releases/download/v{{ gotop_version }}/gotop_v{{ gotop_version }}_linux_amd64.tgz
     dest: /usr/local/bin
     remote_src: yes
   when: gotop.stdout != gotop_version and ansible_system == "Linux"
