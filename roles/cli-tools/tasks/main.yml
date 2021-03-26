@@ -25,7 +25,6 @@
     - curl
     - subversion
     - jq
-    - diff-so-fancy
     - ncdu
   when: ansible_distribution == "Archlinux"
 
@@ -45,7 +44,6 @@
     - cfssl
     - gopass
     - vegeta
-    - diff-so-fancy
     - ncdu
   when: ansible_distribution == "MacOSX"
 
