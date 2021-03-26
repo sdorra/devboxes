@@ -3,8 +3,8 @@
   snap:
     name: node
     classic: yes
-    channel: 12/stable
-  when: ansible_distribution == "Ubuntu" or ansible_distribution == "Archlinux"
+    channel: 14/stable
+  when: ansible_system == "Linux"
 
 - name: Remove node 10 (MacOSX)
   homebrew:
@@ -24,7 +24,7 @@
   npm:
     name: yarn
     global: yes
-  when: ansible_distribution == "Ubuntu" or ansible_distribution == "Archlinux"
+  when: ansible_system == "Linux"
 
 - name: Install global npm packages
   become: yes
