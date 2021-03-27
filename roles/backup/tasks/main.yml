@@ -1,0 +1,5 @@
+- name: Install restic
+  become: yes
+  apt:
+    name: restic
+  when: ansible_distribution == "Ubuntu"

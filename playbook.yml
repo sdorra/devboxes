@@ -105,3 +105,7 @@
   - role: trivy
     tags:
     - trivy
+  - role: backup
+    tags:
+    - backup
+    - restic
