@@ -1,12 +1,12 @@
-- name: Install go 1.12 (Linux)
+- name: Install go 1.16 (Linux)
   become: yes
   snap:
     classic: yes
-    channel: 1.12/stable
+    channel: 1.16/stable
     name: go
   when: ansible_distribution == "Ubuntu" or ansible_distribution == "Archlinux"
 
-- name: Install go 1.12 and required tools (MacOSX)
+- name: Install go and required tools (MacOSX)
   homebrew:
     name: 
     - go
