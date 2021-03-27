@@ -181,8 +181,8 @@ export FZF_DEFAULT_OPTS="--bind='ctrl-o:execute(code {})+abort'"
 
 # pywal
 # https://github.com/dylanaraps/pywal/wiki/Getting-Started#making-the-colorscheme-persist-on-reboot
-#[ -f ~/.cache/wal/sequences ] && (cat ~/.cache/wal/sequences &)
-#[ -f ~/.cache/wal/colors-tty.sh ] && source ~/.cache/wal/colors-tty.sh
+[ -f ~/.cache/wal/sequences ] && (cat ~/.cache/wal/sequences &)
+[ -f ~/.cache/wal/colors-tty.sh ] && source ~/.cache/wal/colors-tty.sh
 
 # enable gpg ssh agent
 [ -f ~/.gnupg/gpgrc ] && source ~/.gnupg/gpgrc
