@@ -26,10 +26,17 @@ gpgKey: "${GPG_KEY}"
 EOF
 fi
 
+if which python3 > /dev/null 2>&1; then
+  PYTHON=$(which python3)
+else
+  PYTHON=$(which python)
+fi
+
 echo "starting ansible ..."
 echo "===================="
 
 ansible-playbook \
+  -e ansible_python_interpreter="${PYTHON}" \
   --extra-vars="@${BASEDIR}/vars.yml" \
   "${BASEDIR}/playbook.yml" \
   --connection local \
