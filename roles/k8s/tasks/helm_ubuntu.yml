@@ -1,0 +1,14 @@
+- name: Install helm gpg key (Ubuntu)
+  become: yes
+  apt_key:
+    url: https://baltocdn.com/helm/signing.asc
+
+- name: Install helm apt repository (Ubuntu)
+  become: yes
+  apt_repository:
+    repo: deb https://baltocdn.com/helm/stable/debian/ all main
+
+- name: Install helm package (Ubuntu)
+  become: yes
+  apt:
+    name: helm

@@ -11,7 +11,7 @@
 
 - name: Download and unarchive
   unarchive:
-    src: https://github.com/derailed/k9s/releases/download/{{k9s_version}}/k9s_{{k9s_version}}_Linux_x86_64.tar.gz
+    src: https://github.com/derailed/k9s/releases/download/v{{k9s_version}}/k9s_Linux_x86_64.tar.gz
     dest: /tmp/k9s.temp
     remote_src: yes
   when: k9s.stdout != k9s_version

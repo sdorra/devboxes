@@ -23,14 +23,16 @@
 - name: Install kubectx
   include: kubectx.yml
 
-- name: Install helm
-  include: helm.yml
+- name: Install helm (Arch)
+  include: helm_arch.yml
+  when: ansible_distribution == "Archlinux"
+
+- name: Install helm (Ubuntu)
+  include: helm_ubuntu.yml
+  when: ansible_distribution == "Ubuntu"
 
 - name: Install draft
   include: draft.yml
-
-- name: Install kustomize
-  include: kustomize.yml
 
 - name: Install k9s
   include: k9s.yml
