@@ -1,19 +1,38 @@
 - name: Install git (Arch)
   become: yes
   pacman:
-    name: git
+    name: 
+    - git
+    - git-crypt
   when: ansible_distribution == "Archlinux"
 
-- name: Install git (Ubuntu)
+- name: Install git related tools (Ubuntu)
   become: yes
   apt:
-    name: git
+    name: 
+    - git
+    - git-crypt
   when: ansible_distribution == "Ubuntu"
 
 - name: Install git (MacOSX)
   homebrew:
-    name: git
+    name: 
+    - git
+    - git-crypt
+    - gh
   when: ansible_distribution == "MacOSX"
+
+- name: Check gh client version (Ubuntu)
+  shell: gh --version | head -1 | awk '{print $3}'
+  register: gh
+  changed_when: False
+  when: ansible_distribution == "Ubuntu"
+
+- name: Install GitHub Client (Ubuntu)
+  become: yes
+  apt:
+    deb: https://github.com/cli/cli/releases/download/v{{ gh_version }}/gh_{{ gh_version }}_linux_amd64.deb
+  when: ansible_distribution == "Ubuntu" and gh.stdout != gh_version
 
 - name: Check if diff-so-fancy is installed
   stat:
@@ -25,3 +44,5 @@
     src: "{{ playbook_dir }}/config/gitconfig.j2"
     dest: ~/.gitconfig
     mode: 0600
+
+
