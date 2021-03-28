@@ -7,7 +7,10 @@
 - name: Install gpg (Ubuntu)
   become: yes
   apt:
-    name: gnupg
+    name: 
+    - gnupg
+    - pcscd
+    - scdaemon
   when: ansible_distribution == "Ubuntu"
 
 - name: Install gpg (MacOSX)
