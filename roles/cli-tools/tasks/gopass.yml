@@ -19,5 +19,7 @@
 - name: Install gopass (Ubuntu)
   become: yes
   apt:
-    name: gopass
+    name: 
+    - gopass
+    - xclip
   when: ansible_distribution == "Ubuntu"
