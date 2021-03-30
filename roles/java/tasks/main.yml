@@ -12,7 +12,9 @@
   apt:
     name:
     - openjdk-11-jdk
+    - openjdk-11-source
     - openjdk-8-jdk
+    - openjdk-8-source
     - maven
   when: ansible_distribution == "Ubuntu"
 
