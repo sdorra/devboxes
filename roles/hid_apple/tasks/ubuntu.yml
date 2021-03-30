@@ -1,0 +1,15 @@
+- name: Copy keyboard configuration
+  become: yes
+  copy:
+    src: files/hid_apple.conf
+    dest: /etc/modprobe.d/hid_apple.conf
+    owner: root
+    group: root
+    mode: '0644'
+  register: conf
+
+- name: Regenerate initramfs
+  become: yes
+  shell: update-initramfs -u -k all
+  when: conf.changed
+

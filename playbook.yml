@@ -109,3 +109,8 @@
     tags:
     - backup
     - restic
+  - role: hid_apple
+    tags:
+    - apple
+    - keyboard
+    - hid_apple
