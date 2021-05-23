@@ -58,6 +58,34 @@ Install ansible `sudo pacman -S ansible`
 Just run the `devbox` script, on the first run it will ask some question to personalize the installed configurations.
 After that it will ask for your sudo password and then apply the ansible playbook. 
 
+You can also test the whole bunch in an ephemeral docker container.
+
+```shell
+docker build -t devboxes .
+docker run -v $(pwd):/home/dev/devboxes \
+    -it \
+    --tmpfs /run \
+    --tmpfs /run/lock \
+    --privileged \
+    -v /sys/fs/cgroup:/sys/fs/cgroup:ro \
+    -v /lib/modules:/lib/modules:ro \
+   --name devbox \
+    devboxes
+
+#login with: dev / box
+devboxes/devbox -e ansible_become_pass='box' 
+
+# Once ansible is done, explore the container as you like.
+# After you're done, you'll have to kill it from another terminal:
+docker rm -f devbox
+```
+
+Note that it's not a sandboxed container, because devboxes relies on snap, which relies on systemd, which both are not
+made for containers.
+In general, less privileges than `--privileged` flag would suffice (see [snpad-docker](https://github.com/ogra1/snapd-docker/blob/3a38d17a30d8295f6099b4e5769f54763e92ad4a/build.sh#L110-L113)).
+But, devboxes installs and runs docker (in this case in docker), which is what `--privileged` was made for, so its an obvious choice here.
+Use it only for testing and development!
+
 ## Tags
 
 Its also possible to only apply certain tags, e.g.
