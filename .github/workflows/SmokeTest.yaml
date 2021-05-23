@@ -1,0 +1,39 @@
+name: Smoke Test
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+jobs:
+  exec:
+    runs-on: ubuntu-20.04
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      - uses: actions/checkout@v2.3.4
+
+      # Provide required binaries
+      # fc-cache (fontconfig)
+      # gsettings (gnome)
+      - name: install
+        run: sudo apt-get update && sudo apt-get install -y ansible unzip fontconfig gnome-core snapd snap-confine
+
+      # Uninstall gh in order to avoid error: "A later version is already installed"
+      - name: Uninstall preconfigured github cli
+        run: sudo apt-get remove gh
+
+      - name: create vars.yaml
+        run: |
+          cat << EOF > vars.yml
+          mail: some@o.ne
+          displayName: Some one
+          gpgKey: "abcdef"
+          EOF
+
+      - name: smoke test
+        run: ./devbox -e ansible_become_pass=''
