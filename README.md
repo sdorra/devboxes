@@ -77,6 +77,14 @@ devboxes/devbox -e ansible_become_pass='box'
 
 # Once ansible is done, explore the container as you like.
 # After you're done, you'll have to kill it from another terminal:
+docker stop devbox
+
+# If you need the container again later just
+docker start devbox
+#login with: dev / box
+docker attach devbox
+
+# If you want to get rid of it for good 
 docker rm -f devbox
 ```
 
