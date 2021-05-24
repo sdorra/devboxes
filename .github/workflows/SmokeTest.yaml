@@ -35,5 +35,9 @@ jobs:
           gpgKey: "abcdef"
           EOF
 
-      - name: smoke test
+      - name: Initial smoke test
+        run: ./devbox -e ansible_become_pass=''
+
+      # Make sure the playbook also succeeds on incremental run
+      - name: Incremental smoke test
         run: ./devbox -e ansible_become_pass=''
