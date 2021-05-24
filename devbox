@@ -35,10 +35,13 @@ fi
 echo "starting ansible ..."
 echo "===================="
 
+# If you pass "-e ansible_become_pass=<your sudo password" it will not ask for the password.
+# This is discouraged and only for testing purposes
 ansible-playbook \
   -e ansible_python_interpreter="${PYTHON}" \
   --extra-vars="@${BASEDIR}/vars.yml" \
   "${BASEDIR}/playbook.yml" \
   --connection local \
   -i localhost, \
-  -K $@
+  $( [[ ! " $* " == *ansible_become_pass* ]] && echo '-K') \
+  $@

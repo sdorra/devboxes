@@ -2,10 +2,13 @@
   get_url:
     url: https://raw.githubusercontent.com/ahmetb/kubectl-alias/master/.kubectl_aliases
     dest: ~/.kubectl_aliases
-    mode: '0440'
+    # Require owner write to allow idempotent calls of ansible
+    mode: '0640'
+    force : yes
 
 - name: Download docker_aliases
   get_url:
     url: "https://github.com/schnatterer/docker-aliases/releases/download/{{ docker_aliases_version }}/default.docker-aliases"
     dest: ~/.docker_aliases
-    mode: '0440'
+    mode: '0640'
+    force : yes
