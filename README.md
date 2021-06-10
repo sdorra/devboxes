@@ -88,6 +88,9 @@ docker attach devbox
 docker rm -f devbox
 ```
 
+Please be aware that the `devbox` scripts loads several GB worth of data from the internet and that as a result the 
+container will have take several GB on your harddrive (7GB at the time of writing).
+
 Note that it's not a sandboxed container, because devboxes relies on snap, which relies on systemd, which both are not
 made for containers.
 In general, less privileges than `--privileged` flag would suffice (see [snpad-docker](https://github.com/ogra1/snapd-docker/blob/3a38d17a30d8295f6099b4e5769f54763e92ad4a/build.sh#L110-L113)).
