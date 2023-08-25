@@ -14,3 +14,10 @@
   command: "yadm clone {{ dotfiles_repo_url }}"
   args:
     creates: ~/.local/share/yadm/repo.git
+  register: clone
+
+# in some cases yadm doesn't clone the repo correctly
+# it shows all files as deleted
+- name: Reset git repository
+  command: "yadm reset --hard"
+  when: clone.changed
