@@ -28,10 +28,6 @@
   #   tags:
   #   - shell
   #   - tmux
-  # - role: vim
-  #   tags:
-  #   - shell
-  #   - vim
   # - role: docker
   #   tags:
   #   - docker
