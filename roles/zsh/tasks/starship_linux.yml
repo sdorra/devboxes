@@ -6,8 +6,8 @@
 
 - name: Install starship rtx plugin (Ubuntu)
   shell: rtx plugin install starship
-  when:  not starship_directory.stat.exists
+  when: starship_directory.stat.exists == False
 
 - name: Install starship (Ubuntu)
   shell: rtx install starship
-  when:  not starship_directory.stat.exists
+  when: starship_directory.stat.exists == False
