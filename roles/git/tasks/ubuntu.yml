@@ -1,9 +1,3 @@
-- name: Install git and related tools (Ubuntu)
-  apt:
-    name:
-    - git
-    - git-crypt
-
 - name: Ensure that Apt keyring directory exists (Ubuntu)
   file:
     path: /usr/share/keyrings
@@ -31,6 +25,11 @@
     repo: "deb [arch={{ dpkg_arch.stdout }} signed-by=/usr/share/keyrings/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main"
     filename: github-cli
 
-- name: Install GitHub CLI (Ubuntu)
+- name: Install git and related tools (Ubuntu)
   apt:
-    name: gh
+    name:
+    - git
+    - git-lfs
+    - git-crypt
+    - gh
+

@@ -3,6 +3,7 @@
     name:
     - git
     - git-crypt
+    - git-lfs
     - gh
   when: ansible_distribution == "MacOSX"
 
