@@ -9,5 +9,5 @@
 
 - name: Install git and related tools (Ubuntu)
   become: True
-  include: ubuntu.yml
+  import_tasks: ubuntu.yml
   when: ansible_distribution == "Ubuntu"
