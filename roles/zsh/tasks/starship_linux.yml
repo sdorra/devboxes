@@ -10,3 +10,7 @@
 - name: Install starship (Ubuntu)
   shell: rtx install starship
   when: starship_directory.stat.exists == False
+
+- name: Use starship global (Ubuntu)
+  shell: rtx use --global starship
+  when: starship_directory.stat.exists == False
