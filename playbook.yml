@@ -6,6 +6,10 @@
      - git
      - scm
      - vcs
+  - role: dotfiles
+    tags:
+    - shell
+    - dotfiles
   # - role: zsh
   #   tags:
   #   - zsh

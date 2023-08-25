@@ -9,23 +9,14 @@ fi
 
 BASEDIR=$(dirname "$0")
 
-# TODO check if we need vars
-#if [ ! -f "${BASEDIR}/vars.yml" ]; then
-#  echo -n "mail: "
-#  read MAIL
-#
-#  echo -n "displayName: "
-#  read DISPLAY_NAME
+if [ ! -f "${BASEDIR}/vars.yml" ]; then
+  echo -n "dotfiles repo: "
+  read DOTFILES
 
-#  echo -n "gpg key (KeyId): "
-#  read GPG_KEY
-
-#  cat > "${BASEDIR}/vars.yml" <<EOF
-#mail: ${MAIL}
-#displayName: ${DISPLAY_NAME}
-#gpgKey: "${GPG_KEY}"
-#EOF
-#fi
+  cat > "${BASEDIR}/vars.yml" <<EOF
+dotfiles_repo_url: ${DOTFILES}
+EOF
+fi
 
 if which python3 > /dev/null 2>&1; then
   PYTHON=$(which python3)
@@ -38,10 +29,8 @@ echo "===================="
 
 ansible-playbook \
   -e ansible_python_interpreter="${PYTHON}" \
+  --extra-vars="@${BASEDIR}/vars.yml" \
   "${BASEDIR}/playbook.yml" \
   --connection local \
   -i localhost, \
   -K $@
-
-# TODO check if we need vars
-#  --extra-vars="@${BASEDIR}/vars.yml" \

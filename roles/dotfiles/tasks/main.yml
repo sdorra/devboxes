@@ -1,0 +1,16 @@
+- name: Install yadm (MacOSX)
+  homebrew:
+    name:
+    - yadm
+  when: ansible_distribution == "MacOSX"
+
+- name: Install yadm (Ubuntu)
+  become: True
+  apt:
+    name: yadm
+  when: ansible_distribution == "Ubuntu"
+
+- name: Clone dotfiles repo
+  command: "yadm clone {{ dotfiles_repo_url }}"
+  args:
+    creates: ~/.local/share/yadm/repo.git
