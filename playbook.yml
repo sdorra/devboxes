@@ -2,115 +2,115 @@
   roles:
   - role: git
     tags:
-    - shell
-    - git
-    - scm
-    - vcs
-  - role: zsh
-    tags:
-    - zsh
-    - shell
-  - role: tmux
-    tags:
-    - shell
-    - tmux
-  - role: vim
-    tags:
-    - shell
-    - vim
-  - role: gpg
-    tags:
-    - shell
-    - gpg
-    - gnupg
-  - role: mercurial
-    tags:
-    - shell
-    - mercurial
-    - hg
-  - role: cli-tools
-    tags:
-    - shell
-    - tools
-    - cli-tools
-  - role: docker
-    tags:
-    - docker
-    - docker-compose
-    - docker-machine
-    - ops
-    - container
-  - role: packer
-    tags:
-    - ops
-    - tools
-    - packer
-  - role: terraform
-    tags:
-    - ops
-    - tools
-    - terraform
-  - role: virtualbox
-    tags:
-    - ops
-    - tools
-    - virtualbox
-    - vms
-    - vbox
-  - role: vagrant
-    tags:
-    - ops
-    - tools
-    - vagrant
-  - role: snap
-    tags:
-    - snap
-  - role: java
-    tags:
-    - dev
-    - java
-    - jdk
-  - role: golang
-    tags:
-    - dev
-    - go
-    - golang
-  - role: node
-    tags:
-    - dev
-    - node
-    - nodejs
-    - js
-    - javascript
-  - role: k8s
-    tags:
-    - ops
-    - k8s
-    - kubernetes
-    - helm
-    - draft
-    - gcloud
-    - gke
-  - role: vscode
-    tags:
-    - dev
-    - vscode
-  - role: idea
-    tags:
-    - dev
-    - idea
-  - role: recording
-    tags:
-    - recording
-  - role: trivy
-    tags:
-    - trivy
-  - role: backup
-    tags:
-    - backup
-    - restic
-  - role: hid_apple
-    tags:
-    - apple
-    - keyboard
-    - hid_apple
+     - shell
+     - git
+     - scm
+     - vcs
+  # - role: zsh
+  #   tags:
+  #   - zsh
+  #   - shell
+  # - role: tmux
+  #   tags:
+  #   - shell
+  #   - tmux
+  # - role: vim
+  #   tags:
+  #   - shell
+  #   - vim
+  # - role: gpg
+  #   tags:
+  #   - shell
+  #   - gpg
+  #   - gnupg
+  # - role: mercurial
+  #   tags:
+  #   - shell
+  #   - mercurial
+  #   - hg
+  # - role: cli-tools
+  #   tags:
+  #   - shell
+  #   - tools
+  #   - cli-tools
+  # - role: docker
+  #   tags:
+  #   - docker
+  #   - docker-compose
+  #   - docker-machine
+  #   - ops
+  #   - container
+  # - role: packer
+  #   tags:
+  #   - ops
+  #   - tools
+  #   - packer
+  # - role: terraform
+  #   tags:
+  #   - ops
+  #   - tools
+  #   - terraform
+  # - role: virtualbox
+  #   tags:
+  #   - ops
+  #   - tools
+  #   - virtualbox
+  #   - vms
+  #   - vbox
+  # - role: vagrant
+  #   tags:
+  #   - ops
+  #   - tools
+  #   - vagrant
+  # - role: snap
+  #   tags:
+  #   - snap
+  # - role: java
+  #   tags:
+  #   - dev
+  #   - java
+  #   - jdk
+  # - role: golang
+  #   tags:
+  #   - dev
+  #   - go
+  #   - golang
+  # - role: node
+  #   tags:
+  #   - dev
+  #   - node
+  #   - nodejs
+  #   - js
+  #   - javascript
+  # - role: k8s
+  #   tags:
+  #   - ops
+  #   - k8s
+  #   - kubernetes
+  #   - helm
+  #   - draft
+  #   - gcloud
+  #   - gke
+  # - role: vscode
+  #   tags:
+  #   - dev
+  #   - vscode
+  # - role: idea
+  #   tags:
+  #   - dev
+  #   - idea
+  # - role: recording
+  #   tags:
+  #   - recording
+  # - role: trivy
+  #   tags:
+  #   - trivy
+  # - role: backup
+  #   tags:
+  #   - backup
+  #   - restic
+  # - role: hid_apple
+  #   tags:
+  #   - apple
+  #   - keyboard
+  #   - hid_apple

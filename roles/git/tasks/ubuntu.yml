@@ -1,0 +1,36 @@
+- name: Install git and related tools (Ubuntu)
+  apt:
+    name:
+    - git
+    - git-crypt
+
+- name: Ensure that Apt keyring directory exists (Ubuntu)
+  file:
+    path: /usr/share/keyrings
+    state: directory
+    owner: root
+    group: root
+    mode: "0755"
+
+- name: Import GitHub CLI Apt key (Ubuntu)
+  get_url:
+    url: https://cli.github.com/packages/githubcli-archive-keyring.gpg
+    dest: /usr/share/keyrings/githubcli-archive-keyring.gpg
+    owner: root
+    group: root
+    mode: "0644"
+
+- name: Get dpkg architecture (Ubuntu)
+  command:
+    cmd: "dpkg --print-architecture"
+  register: dpkg_arch
+  changed_when: false
+
+- name: Install GitHub CLI Repository (Ubuntu)
+  apt_repository:
+    repo: "deb [arch={{ dpkg_arch.stdout }} signed-by=/usr/share/keyrings/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main"
+    filename: github-cli
+
+- name: Install GitHub CLI (Ubuntu)
+  apt:
+    name: gh
