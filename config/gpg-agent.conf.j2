@@ -1,9 +1,0 @@
-enable-ssh-support
-{% if ansible_distribution == "MacOSX" %}
-pinentry-program /usr/local/bin/pinentry-mac
-{% else %}
-pinentry-program /usr/bin/pinentry-gnome3
-{% endif %}
-default-cache-ttl 60
-max-cache-ttl 120
-write-env-file
