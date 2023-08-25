@@ -5,7 +5,7 @@
 
 - name: Install fira nerd-font
   unarchive:
-    src: https://github.com/ryanoasis/nerd-fonts/releases/download/v2.0.0/FiraCode.zip
+    src: https://github.com/ryanoasis/nerd-fonts/releases/download/v{{ nerd_font_version }}/FiraCode.zip
     dest: ~/Library/Fonts
     remote_src: yes
     creates:  ~/Library/Fonts/Fura Code Medium Nerd Font Complete.ttf

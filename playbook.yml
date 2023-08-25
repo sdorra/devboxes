@@ -20,10 +20,10 @@
         - shell
         - tools
         - cli-tools
-#    - role: zsh
-#      tags:
-#        - shell
-#        - zsh
+    - role: zsh
+      tags:
+        - shell
+        - zsh
   # - role: tmux
   #   tags:
   #   - shell

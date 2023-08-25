@@ -1,0 +1,13 @@
+- name: Check if starship is installed (Ubuntu)
+  file:
+    path: ~/.local/share/rtx/installs/starship
+    state: directory
+  register: starship_directory
+
+- name: Install starship rtx plugin (Ubuntu)
+  shell: rtx plugin install starship
+  when:  not starship_directory.stat.exists
+
+- name: Install starship (Ubuntu)
+  shell: rtx install starship
+  when:  not starship_directory.stat.exists

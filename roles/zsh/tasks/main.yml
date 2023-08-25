@@ -1,51 +1,22 @@
-- name: Install zsh and required dependencies (Arch)
-  become: yes
-  pacman:
-    name:
-    - zsh
-    - python3
-    - python-pip
-    - fzf
-  when: ansible_distribution == "Archlinux"
-
-- name: Install zsh and required dependencies (Ubuntu)
-  become: yes
-  apt:
-    name:
-    - zsh
-    - python3
-    - python3-pip
-  when: ansible_distribution == "Ubuntu"
-
 - name: Install zsh and required dependencies (MacOSX)
   homebrew:
     name:
     - zsh
-    - python3
-    # - python3-pip is installed with python3
     - fzf
+    - starship
   when: ansible_distribution == "MacOSX"
 
-- name: Clone fzf repository (Ubuntu)
-  git:
-    repo: https://github.com/junegunn/fzf
-    dest: ~/.fzf
-    update: no
+- name: Install zsh and required dependencies (Ubuntu)
+  become: True
+  apt:
+    name:
+    - zsh
+    - fzf
   when: ansible_distribution == "Ubuntu"
 
-- name: Install fzf (Ubuntu)
-  shell: ~/.fzf/install --no-update-rc
-  args:
-    creates: ~/.fzf.zsh
+- name: Install starship (Ubuntu)
+  import_tasks: starship_linux.yml
   when: ansible_distribution == "Ubuntu"
-
-- name: Link zsh configuration
-  file:
-    src: "{{ playbook_dir }}/config/{{ item }}"
-    dest: ~/.{{ item }}
-    state: link
-  with_items:
-  - zshrc
 
 - name: Find path of zsh
   shell: which zsh
@@ -53,18 +24,18 @@
   changed_when: False
 
 - name: Change default shell to zsh
-  become: yes
+  become: True
   user:
     name: "{{ lookup('env','USER') }}"
     shell: "{{ whichzsh.stdout }}"
   when: not ansible_check_mode
 
 - name: Install terminal font (Linux)
-  include: font_linux.yml
-  when: ansible_distribution == "Ubuntu" or ansible_distribution == "Archlinux"
+  import_tasks: font_linux.yml
+  when: ansible_distribution == "Ubuntu"
 
 - name: Install terminal font (MacOSX)
-  include: font_osx.yml
+  import_tasks: font_osx.yml
   when: ansible_distribution == "MacOSX"
 
 - name: Install oh-my-zsh
@@ -84,43 +55,3 @@
     repo: https://github.com/zsh-users/zsh-syntax-highlighting.git
     dest: ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting
     update: no
-
-- name: Install powerlevel10k theme
-  git:
-    repo: https://github.com/romkatv/powerlevel10k
-    dest: ~/.oh-my-zsh/custom/themes/powerlevel10k
-    update: no
-
-- name: create custom oh-my-zsh plugin directories
-  file:
-    path: "~/.oh-my-zsh/custom/plugins/{{ item }}"
-    state: directory
-  with_items: "{{ custom_omz_plugins }}"
-
-- name: Install custom oh-my-zsh plugins
-  file:
-    src: "{{ playbook_dir }}/config/oh-my-zsh-plugins/{{item}}.plugin.zsh"
-    dest: "~/.oh-my-zsh/custom/plugins/{{ item }}/{{item}}.plugin.zsh"
-    state: link
-  with_items: "{{ custom_omz_plugins }}"
-
-- name: Install pywal (Linux)
-  become: yes
-  pip:
-    name: pywal
-    executable: pip3
-  when: ansible_distribution == "Ubuntu" or ansible_distribution == "Archlinux"
-
-# we need to use the version from master for MacOSX, because of a bug in pywal 3.3.0
-# https://github.com/dylanaraps/pywal/issues/382
-
-- name: Capture if pywal is installed (MacOSX)
-  stat:
-    path: /usr/local/bin/wal
-  register: wal
-
-- name: Install pywal (MacOSX)
-  pip:
-    name: https://github.com/dylanaraps/pywal/archive/master.zip
-    executable: pip3
-  when: not wal.stat.exists and ansible_distribution == "MacOSX"

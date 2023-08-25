@@ -1,3 +1,6 @@
+# https://github.com/ryanoasis/nerd-fonts/releases
+nerd_font_version: 3.0.2
+
 custom_omz_plugins:
 - editorconfig
 - java-env
