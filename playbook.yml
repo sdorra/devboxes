@@ -15,10 +15,15 @@
         - shell
         - gpg
         - gnupg
-  # - role: zsh
-  #   tags:
-  #   - zsh
-  #   - shell
+    - role: cli-tools
+      tags:
+        - shell
+        - tools
+        - cli-tools
+#    - role: zsh
+#      tags:
+#        - shell
+#        - zsh
   # - role: tmux
   #   tags:
   #   - shell
@@ -27,16 +32,6 @@
   #   tags:
   #   - shell
   #   - vim
-  # - role: mercurial
-  #   tags:
-  #   - shell
-  #   - mercurial
-  #   - hg
-  # - role: cli-tools
-  #   tags:
-  #   - shell
-  #   - tools
-  #   - cli-tools
   # - role: docker
   #   tags:
   #   - docker

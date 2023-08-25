@@ -1,5 +1,14 @@
-bat_version: 0.18.0
-gotop_version: 4.1.1
-ctop_version: 0.7.5
-vegeta_version: 12.8.4
 docker_aliases_version: 0.4.0
+
+tools:
+- htop
+- make
+- openssl
+- wget
+- curl
+- subversion
+- jq
+- mercurial
+- gopass
+- bat
+- rtx
