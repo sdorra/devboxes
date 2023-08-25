@@ -16,13 +16,13 @@ if [ ! -f "${BASEDIR}/vars.yml" ]; then
   echo -n "displayName: "
   read DISPLAY_NAME
 
-  echo -n "gpg key: "
+  echo -n "gpg key (KeyId): "
   read GPG_KEY
 
   cat > "${BASEDIR}/vars.yml" <<EOF
 mail: ${MAIL}
 displayName: ${DISPLAY_NAME}
-gpgKey (KeyId): "${GPG_KEY}"
+gpgKey: "${GPG_KEY}"
 EOF
 fi
 
