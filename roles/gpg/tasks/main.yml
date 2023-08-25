@@ -1,42 +1,15 @@
-- name: Install gpg (Arch)
-  become: yes
-  pacman:
-    name: gnupg
-  when: ansible_distribution == "Archlinux"
-
-- name: Install gpg (Ubuntu)
-  become: yes
-  apt:
-    name: 
-    - gnupg
-    - pcscd
-    - scdaemon
-  when: ansible_distribution == "Ubuntu"
-
-- name: Install gpg (MacOSX)
+- name: Install gpg and related tools (MacOSX)
   homebrew:
-    name: 
+    name:
     - gnupg
     - pinentry-mac
   when: ansible_distribution == "MacOSX"
 
-- name: Create gpg configuration directory
-  file:
-    path: ~/.gnupg
-    mode: 0700
-    state: directory
-
-- name: Link gpgrc script
-  file:
-    src: "{{ playbook_dir }}/config/gpgrc"
-    dest: ~/.gnupg/gpgrc
-    state: link
-
-- name: Render gpg configurations
-  template: 
-    src: "{{ playbook_dir }}/config/{{item}}.j2"
-    dest: ~/.gnupg/{{item}}
-    mode: 0600
-  with_items:
-  - gpg.conf
-  - gpg-agent.conf
+- name: Install gpg and related tools (Ubuntu)
+  become: True
+  apt:
+    name:
+    - gnupg
+    - pcscd
+    - scdaemon
+  when: ansible_distribution == "Ubuntu"

@@ -1,15 +1,20 @@
 - hosts: all
   roles:
-  - role: git
-    tags:
-     - shell
-     - git
-     - scm
-     - vcs
-  - role: dotfiles
-    tags:
-    - shell
-    - dotfiles
+    - role: git
+      tags:
+        - shell
+        - git
+        - scm
+        - vcs
+    - role: dotfiles
+      tags:
+        - shell
+        - dotfiles
+    - role: gpg
+      tags:
+        - shell
+        - gpg
+        - gnupg
   # - role: zsh
   #   tags:
   #   - zsh
@@ -22,11 +27,6 @@
   #   tags:
   #   - shell
   #   - vim
-  # - role: gpg
-  #   tags:
-  #   - shell
-  #   - gpg
-  #   - gnupg
   # - role: mercurial
   #   tags:
   #   - shell
