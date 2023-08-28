@@ -24,6 +24,9 @@
       tags:
         - shell
         - zsh
+    - role: browser
+      tags:
+        - browser
   # - role: tmux
   #   tags:
   #   - shell
