@@ -1,0 +1,5 @@
+- name: Configure terminal (Ubuntu)
+  import_tasks: ubuntu.yml
+  when: ansible_distribution == 'Ubuntu'
+
+# TODO install warp on osx

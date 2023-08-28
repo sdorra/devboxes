@@ -1,0 +1,52 @@
+# b1dcc9dd-5262-4d8d-a863-c897e6d979b9 is the default profile id
+
+- name: Install dconf-cli (Ubuntu)
+  become: True
+  apt:
+    name:
+      - dconf-cli
+      - uuid-runtime
+
+- name: Clone gogh repository (Ubuntu)
+  git:
+    dest: "~/.gogh"
+    repo: https://github.com/Gogh-Co/Gogh
+  register: gogh
+
+- name: Install gruvbox theme (Ubuntu)
+  shell: "TERMINAL=gnome-terminal ~/.gogh/installs/{{ colorscheme.script }}.sh"
+  when: gogh.changed
+
+- name: Get Gnome Terminal Profile ids (Ubuntu)
+  shell: "dconf list /org/gnome/terminal/legacy/profiles:/"
+  register: profiles
+  changed_when: False
+
+- name: Loop over profiles (Ubuntu)
+  include_tasks: profileid.yml
+  loop: "{{ profiles.stdout_lines }}"
+
+- name: Set default profile (Ubuntu)
+  dconf:
+    key: /org/gnome/terminal/legacy/profiles:/default
+    value: "'{{ profile_id | replace(':','') | replace('/','') }}'"
+
+- name: terminal bell
+  dconf:
+    key: "/org/gnome/terminal/legacy/profiles:/{{ profile_id }}audible-bell"
+    value: "false"
+
+- name: Set terminal transparency (Ubuntu)
+  dconf:
+    key: "/org/gnome/terminal/legacy/profiles:/{{ profile_id }}use-transparent-background"
+    value: "true"
+
+- name: Set terminal transparency percentage (Ubuntu)
+  dconf:
+    key: "/org/gnome/terminal/legacy/profiles:/{{ profile_id }}background-transparency-percent"
+    value: "5"
+
+- name: Set terminal scrollback lines (Ubuntu)
+  dconf:
+    key: "/org/gnome/terminal/legacy/profiles:/{{ profile_id }}scrollback-lines"
+    value: "1000000"

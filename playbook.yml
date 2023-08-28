@@ -27,6 +27,9 @@
     - role: browser
       tags:
         - browser
+    - role: terminal
+      tags:
+        - terminal
   # - role: tmux
   #   tags:
   #   - shell

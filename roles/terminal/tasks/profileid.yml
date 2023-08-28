@@ -1,0 +1,9 @@
+- name: Get profile name of {{ item }} (Ubuntu)
+  shell: "dconf read /org/gnome/terminal/legacy/profiles:/{{ item }}visible-name"
+  changed_when: False
+  register: profile_name
+
+- name: Set profile id {{ item }} (Ubuntu)
+  set_fact:
+    profile_id: "{{ item }}"
+  when: profile_name.stdout == "'" + colorscheme.name + "'"
