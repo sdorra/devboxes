@@ -1,10 +1,7 @@
-- name: Install k8s tools (Linux)
-  include: linux.yml
-  when: ansible_system == "Linux"
+- name: Install k8s tools (Ubuntu)
+  import_tasks: ubuntu.yml
+  when: ansible_distribution == "Ubuntu"
 
 - name: Install k8s tools (MacOSX)
-  include: osx.yml
+  import_tasks: osx.yml
   when: ansible_distribution == "MacOSX"
-
-- name: Install kube-cleaner
-  include: kube-cleaner.yml

@@ -41,6 +41,14 @@
       - docker
       - ops
       - container
+    - role: k8s
+      tags:
+      - ops
+      - k8s
+      - kubernetes
+      - helm
+      - gcloud
+      - gke
   # - role: tmux
   #   tags:
   #   - shell
@@ -75,15 +83,6 @@
   #   - nodejs
   #   - js
   #   - javascript
-  # - role: k8s
-  #   tags:
-  #   - ops
-  #   - k8s
-  #   - kubernetes
-  #   - helm
-  #   - draft
-  #   - gcloud
-  #   - gke
   # - role: vscode
   #   tags:
   #   - dev

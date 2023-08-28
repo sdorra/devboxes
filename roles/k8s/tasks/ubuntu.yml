@@ -1,0 +1,79 @@
+
+- name: Install gcloud (Ubuntu)
+  block:
+  - name: Install gcloud gpg key (Ubuntu)
+    become: True
+    apt_key:
+      url: https://packages.cloud.google.com/apt/doc/apt-key.gpg
+      keyring: /usr/share/keyrings/cloud.google.gpg
+
+  - name: Capture lsb release (Ubuntu)
+    shell: lsb_release -cs
+    register: lsbrelease
+    changed_when: False
+
+  - name: Install gcloud apt repository (Ubuntu)
+    become: True
+    apt_repository:
+      repo: deb [signed-by=/usr/share/keyrings/cloud.google.gpg] http://packages.cloud.google.com/apt cloud-sdk main
+
+  - name: Install google-cloud-sdk package (Ubuntu)
+    become: True
+    apt:
+      name: google-cloud-sdk
+
+- name: Install kubectl and gke auth plugin (Ubuntu)
+  become: True
+  apt:
+    name: 
+    - kubectl
+    - google-cloud-cli-gke-gcloud-auth-plugin
+
+- name: Install helm (Ubuntu)
+  block:
+  - name: Install helm gpg key (Ubuntu)
+    become: True
+    apt_key:
+      url: https://baltocdn.com/helm/signing.asc
+
+  - name: Install helm apt repository (Ubuntu)
+    become: True
+    apt_repository:
+      repo: deb https://baltocdn.com/helm/stable/debian/ all main
+
+  - name: Install helm package (Ubuntu)
+    become: True
+    apt:
+      name: helm
+
+- name: Install kubectx (Ubuntu)
+  block:
+  - name: Clone kubectx repository (Ubuntu)
+    become: True
+    git:
+      repo: https://github.com/ahmetb/kubectx
+      dest: /opt/kubectx
+
+  - name: Link kubectx scripts (Ubuntu)
+    become: True
+    file:
+      src: /opt/kubectx/{{ item }}
+      dest: /usr/local/bin/{{ item }}
+      state: link
+    with_items:
+    - kubectx
+    - kubens
+
+  - name: Create completions directory (Ubuntu)
+    file:
+      path: ~/.oh-my-zsh/completions
+      state: directory
+
+  - name: Link kubectx completions (Ubuntu)
+    file:
+      src: /opt/kubectx/completion/_{{ item }}.zsh
+      dest: ~/.oh-my-zsh/completions/_{{ item }}.zsh
+      state: link
+    with_items:
+    - kubectx
+    - kubens
