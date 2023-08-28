@@ -1,5 +1,5 @@
 - name: Install docker gpg key (Ubuntu)
-  become: yes
+  become: True
   apt_key:
     url: https://download.docker.com/linux/ubuntu/gpg
 
@@ -9,17 +9,34 @@
   changed_when: False
 
 - name: Remove docker test apt repository (Ubuntu)
-  become: yes
+  become: True
   apt_repository:
     repo: deb [arch=amd64] https://download.docker.com/linux/ubuntu {{ lsbrelease.stdout }} test
     state: absent
 
 - name: Install docker stable apt repository (Ubuntu)
-  become: yes
+  become: True
   apt_repository:
     repo: deb [arch=amd64] https://download.docker.com/linux/ubuntu {{ lsbrelease.stdout }} stable
 
-- name: Install docker-ce package (Ubuntu)
-  become: yes
+- name: Install docker packages (Ubuntu)
+  become: True
   apt:
-    name: docker-ce
+    name: 
+    - docker-ce
+    - docker-compose-plugin
+
+- name: Start and enable docker daemon
+  become: True
+  systemd:
+    name: docker.service
+    enabled: True
+    state: started
+
+- name: Add user to docker group
+  become: True
+  user:
+    name: "{{ lookup('env','USER') }}"
+    groups: docker
+    append: True
+

@@ -1,12 +1,13 @@
-- name: Install vagrant (Ubuntu)
-  include: ubuntu.yml
+- name: Install vagrant and VirtualBox (Ubuntu)
+  become: True
+  apt:
+    name:
+    - vagrant
+    - virtualbox
   when: ansible_distribution == "Ubuntu"
 
-- name: Install vagrant (Arch)
-  include: arch.yml
-  when: ansible_distribution == "Archlinux"
-
-- name: Install vagrant (MacOSX)
-  homebrew_cask:
-    name: vagrant
-  when: ansible_distribution == "MacOSX"
+# TODO check if this is necessary. VirtualBox does not make much sense on mx cpus.
+#- name: Install vagrant (MacOSX)
+#  homebrew_cask:
+#    name: vagrant
+#  when: ansible_distribution == "MacOSX"
