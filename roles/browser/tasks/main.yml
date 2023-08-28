@@ -2,16 +2,19 @@
   become: True
   apt_key:
     url: https://dl.google.com/linux/linux_signing_key.pub
+  when: ansible_distribution == 'Ubuntu'
 
 - name: Install google chrome apt repository (Ubuntu)
   become: True
   apt_repository:
     repo: "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main"
+  when: ansible_distribution == 'Ubuntu'
 
 - name: Install google chrome (Ubuntu)
   become: True
   apt:
     name:
       - google-chrome-stable
+  when: ansible_distribution == 'Ubuntu'
 
 # TODO install arc browser on osx
