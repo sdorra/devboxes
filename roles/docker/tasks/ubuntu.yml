@@ -2,22 +2,17 @@
   become: True
   apt_key:
     url: https://download.docker.com/linux/ubuntu/gpg
+    keyring: /usr/share/keyrings/docker.gpg
 
 - name: Capture lsb release (Ubuntu)
   shell: lsb_release -cs
   register: lsbrelease
   changed_when: False
 
-- name: Remove docker test apt repository (Ubuntu)
-  become: True
-  apt_repository:
-    repo: deb [arch=amd64] https://download.docker.com/linux/ubuntu {{ lsbrelease.stdout }} test
-    state: absent
-
 - name: Install docker stable apt repository (Ubuntu)
   become: True
   apt_repository:
-    repo: deb [arch=amd64] https://download.docker.com/linux/ubuntu {{ lsbrelease.stdout }} stable
+    repo: deb [arch=amd64 signed-by=/usr/share/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu {{ lsbrelease.stdout }} stable
 
 - name: Install docker packages (Ubuntu)
   become: True
