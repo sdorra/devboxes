@@ -1,8 +1,6 @@
-- name: Install cli tools from repository (Ubuntu)
+- name: Install cli tools (Ubuntu)
   become: True
-  apt:
-    name: "{{ item }}"
-  with_items: "{{ tools }}"
+  import_tasks: ubuntu.yml
   when: ansible_distribution == "Ubuntu"
 
 - name: Install cli tools from repository (MacOSX)

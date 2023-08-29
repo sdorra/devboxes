@@ -1,0 +1,14 @@
+- name: Install rtx apt key (Ubuntu)
+  apt_key:
+    url: https://rtx.pub/gpg-key.pub
+    keyring: /usr/share/keyrings/rtx.gpg
+
+- name: Install rtx apt repository (Ubuntu)
+  apt_repository:
+    repo: "deb [signed-by=/usr/share/keyrings/rtx.gpg arch=amd64] https://rtx.pub/deb stable main"
+    filename: rtx
+
+- name: Install cli tools from repository (Ubuntu)
+  apt:
+    name: "{{ item }}"
+  with_items: "{{ tools }}"
