@@ -35,11 +35,13 @@
     become: True
     apt_key:
       url: https://baltocdn.com/helm/signing.asc
+      keyring: /usr/share/keyrings/helm.gpg
 
   - name: Install helm apt repository (Ubuntu)
     become: True
     apt_repository:
-      repo: deb https://baltocdn.com/helm/stable/debian/ all main
+      repo: deb [arch=amd64 signed-by=/usr/share/keyrings/helm.gpg] https://baltocdn.com/helm/stable/debian/ all main
+      filename: helm
 
   - name: Install helm package (Ubuntu)
     become: True
