@@ -37,10 +37,16 @@
       url: https://baltocdn.com/helm/signing.asc
       keyring: /usr/share/keyrings/helm.gpg
 
+  - name: Get dpkg architecture (Ubuntu)
+    command:
+      cmd: "dpkg --print-architecture"
+    register: dpkg_arch
+    changed_when: false
+
   - name: Install helm apt repository (Ubuntu)
     become: True
     apt_repository:
-      repo: deb [arch=amd64 signed-by=/usr/share/keyrings/helm.gpg] https://baltocdn.com/helm/stable/debian/ all main
+      repo: deb [arch={{ dpkg_arch.stdout }} signed-by=/usr/share/keyrings/helm.gpg] https://baltocdn.com/helm/stable/debian/ all main
       filename: helm
 
   - name: Install helm package (Ubuntu)

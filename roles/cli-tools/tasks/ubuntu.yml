@@ -3,9 +3,15 @@
     url: https://rtx.pub/gpg-key.pub
     keyring: /usr/share/keyrings/rtx.gpg
 
+- name: Get dpkg architecture (Ubuntu)
+  command:
+    cmd: "dpkg --print-architecture"
+  register: dpkg_arch
+  changed_when: false
+
 - name: Install rtx apt repository (Ubuntu)
   apt_repository:
-    repo: "deb [signed-by=/usr/share/keyrings/rtx.gpg arch=amd64] https://rtx.pub/deb stable main"
+    repo: "deb [arch={{ dpkg_arch.stdout }} signed-by=/usr/share/keyrings/rtx.gpg] https://rtx.pub/deb stable main"
     filename: rtx
 
 - name: Install cli tools from repository (Ubuntu)
