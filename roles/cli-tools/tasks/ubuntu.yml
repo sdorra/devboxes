@@ -11,4 +11,4 @@
 - name: Install cli tools from repository (Ubuntu)
   apt:
     name: "{{ item }}"
-  with_items: "{{ tools }}"
+  with_items: "{{ tools + tools_ubuntu }}"

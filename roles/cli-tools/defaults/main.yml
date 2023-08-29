@@ -13,3 +13,7 @@ tools:
 - bat
 - rtx
 - vim
+- mkcert
+
+tools_ubuntu:
+- libnss3-tools
