@@ -1,11 +1,5 @@
-- name: Install tmux and required dependencies (Arch)
-  become: yes
-  pacman:
-    name: tmux
-  when: ansible_distribution == "Archlinux"
-
-- name: Install tmux and required dependencies (Ubuntu)
-  become: yes
+- name: Install tmux (Ubuntu)
+  become: True
   apt:
     name: tmux
   when: ansible_distribution == "Ubuntu"
@@ -19,16 +13,7 @@
   git:
     repo: https://github.com/tmux-plugins/tpm
     dest: ~/.tmux/plugins/tpm
-
-- name: Link tmux configuration
-  file:
-    src: "{{ playbook_dir }}/config/{{ item }}"
-    dest: ~/.{{ item }}
-    state: link
-  with_items:
-  - tmux.conf
-  - tmux.conf.local
-  register: tmuxconf
+  register: tpm
 
 - name: Install tmux plugins
   shell: |
@@ -40,4 +25,4 @@
     ~/.tmux/plugins/tpm/scripts/install_plugins.sh
     # killing the server is not required, I guess
     tmux kill-server
-  when: tmuxconf.changed
+  when: tpm.changed

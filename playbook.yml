@@ -32,27 +32,27 @@
         - terminal
     - role: vagrant
       tags:
-      - ops
-      - tools
-      - vagrant
-      - vbox
+        - ops
+        - tools
+        - vagrant
+        - vbox
     - role: docker
       tags:
-      - docker
-      - ops
-      - container
+        - docker
+        - ops
+        - container
     - role: k8s
       tags:
-      - ops
-      - k8s
-      - kubernetes
-      - helm
-      - gcloud
-      - gke
-  # - role: tmux
-  #   tags:
-  #   - shell
-  #   - tmux
+        - ops
+        - k8s
+        - kubernetes
+        - helm
+        - gcloud
+        - gke
+    - role: tmux
+      tags:
+        - shell
+        - tmux
   # - role: packer
   #   tags:
   #   - ops
